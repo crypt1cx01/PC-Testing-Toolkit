@@ -1,0 +1,4 @@
+1 ) open CMD administratior
+
+2 ) run This command  for win 8.1 or up > ' powercfg /batteryreport ' OR 'powercfg -energy'
+___ for win 7 run this command ' powercfg /energy '
