@@ -10,33 +10,39 @@ The ultimate, comprehensive toolkit and guide to testing and inspecting new or u
 
 ---
 
+## ⚠️ System Prerequisites (Install First)
+
+Before running the diagnostics, some tools require the Microsoft Visual C++ runtime environment to prevent `.dll` errors. Please install the redistributables before testing:
+* [Visual C++ Redistributable x64 (Direct Download)](https://aka.ms)
+
+---
+
 ## 🛠️ Toolkit Structure & Directory Overview
 
-The repository is logically structured into specialized folders to ensure quick navigation during time-sensitive hardware inspections:
+The repository is logically structured into specialized folders to ensure quick navigation during hardware inspections:
 
-### 1. 🧠 CPU & Motherboard Specification | `cpu-z`
-* **Core Tool:** CPU-Z
-* **Function:** Validates the exact architecture, model, and clock speeds of the CPU, Motherboard, and RAM configuration to prevent spoofed hardware specs.
+### 1. 🔋 `Battery & Power`
+* Contains commands and utilities to test laptop battery health, wear level, and power draw.
+* [Go to Battery Guide](./Battery%20%26%20Power/README.md)
 
-### 2. 💽 Storage Device Health | `Check HArd`
-* **Core Tool:** Storage diagnostics (e.g., CrystalDiskInfo / CrystalDiskMark)
-* **Function:** Reads the S.M.A.R.T. health status, total power-on hours (device age), and measures read/write transfer rates of HDDs and SSDs.
+### 2. 🧠 `CPU & GPU`
+* Dedicated to checking hardware specifications and performing intense stress tests on the processor and graphics card.
+* [Go to CPU & GPU Guide](./CPU%20%26%20GPU/README.md)
 
-### 3. 💾 Memory Stability | `Ram`
-* **Core Tool:** RAM stress testers (e.g., MemTest86 binaries / native scripts)
-* **Function:** Subjects the volatile memory to rigorous write/read patterns to diagnose data corruption, system instability, and Blue Screen of Death (BSOD) triggers.
+### 3. 🖥 `Display & Monitor`
+* Contains web shortcuts and tools to isolate dead pixels, test screen refresh rates (Hz), and color accuracy.
+* [Go to Display Guide](./Display%20%26%20Monitor/README.md)
 
-### 4. 🖥️ Display & Pixel Diagnostics | `Undead_Pixels`
-* **Core Tool:** Undead Pixels
-* **Function:** A portable utility that cycles solid primary colors across the panel to isolate dead pixels, stuck pixels, or backlight bleeding.
+### 4. 🔌 `Peripherals`
+* Quick utilities to verify external hardware parts like keyboards, webcams, microphones, and audio jacks.
+* [Go to Peripherals Guide](./Peripherals/README.md)
 
-### 5. 🔋 Power & Battery Degradation | `Scann battery.txt`
-* **Core Tool:** Embedded command script.
-* **Function:** Contains the native Windows deployment script (`powercfg /batteryreport`) to generate an automated report showing factory design capacity versus current full charge capacity.
+### 5. 💽 `Storage & RAM`
+* Diagnostic tools to check hard drive health (SSD/HDD), read/write speeds, and memory stability.
+* [Go to Storage & RAM Guide](./Storage%20%26%20RAM/README.md)
 
-### 6. 🎬 Multimedia & GPU Stress Test | `videoplayback.mp4`
-* **Core Tool:** High-bitrate, high-resolution test video.
-* **Function:** Acts as a rapid hardware-accelerated playback benchmark to verify GPU decoding stability, integrated audio frequency range, and screen refresh fluidity under load.
+### 🎬 Video Tutorial & Practical Guide | `videoplayback.mp4`
+* **Function:** A comprehensive, step-by-step video guide explaining exactly how to use every tool in this toolkit to inspect your device effectively.
 
 ---
 
