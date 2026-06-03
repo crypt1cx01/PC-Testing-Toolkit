@@ -5,7 +5,7 @@ This directory provides web-based and offline tools to thoroughly inspect input/
 ## 🛠️ Included Tools & Web Tools
 
 ### 1. Keyboard Test Utility (100% Free & Offline)
-* **Local Folder:** [Keyboard Test Tool & Files](https://github.com)
+* **Local Folder:** [Keyboard Test Tool & Files](https://github.com/crypt1cx01/PC-Testing-Toolkit/tree/main/Peripherals/keyboard-test)
 * **Usage:** Run the portable `.exe` file. It displays a virtual keyboard on your screen. Press every key on your physical keyboard; keys that register correctly will light up on the screen and stay highlighted, helping you catch missed clicks, double clicks, or completely dead keys instantly without internet access.
 
 ### 2. Keyboard, Mouse & Gamepad Tester (All-in-One Web Utility)
