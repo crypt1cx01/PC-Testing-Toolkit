@@ -17,7 +17,7 @@ This directory provides tools and guidelines to test internet performance, netwo
 * **Usage:** Click the **"GO"** button to measure download speed, upload speed, and network latency (Ping). Essential for testing the maximum throughput of the network card.
 
 ### 3. Live Ping & Packet Loss Monitor
-* **Web Link:** [Ping-CanBeUseful Tool](https://canbeuseful.com)
+* **Web Link:** [Ping-CanBeUseful Tool](https://ping.canbeuseful.com/en)
 * **Usage:** A visual, live tool that continuously pings servers to monitor connection stability. Leave it running in the background to catch sudden drops, spikes, or packet loss.
 
 ### 4. Windows Built-in Network Resetter
