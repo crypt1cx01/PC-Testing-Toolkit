@@ -22,11 +22,3 @@ This directory focuses on checking the power efficiency, health status, and degr
 ### 2. HWMonitor
 * **Local Folder:** [HWMonitor Tool & Files](https://github.com/crypt1cx01/PC-Testing-Toolkit/tree/main/Battery%20%26%20Power/hwmonitor)
 * **Usage:** Run the portable version to monitor real-time temperatures, voltage usage, and the precise battery wear level percentage.
-
-### 3. AIDA64 (System Stability Test)
-* **Local Folder:** [AIDA64 Tool & Files](https://github.com/crypt1cx01/PC-Testing-Toolkit/tree/main/Battery%20%26%20Power/AIDA64)
-* **Usage:** 
-  1. Open AIDA64 and go to **Tools** > **System Stability Test**.
-  2. Check the boxes for **Stress CPU**, **Stress FPU**, **Stress cache**, and **Stress system memory**.
-  3. Click **Start** to begin the heavy workload test.
-  4. **Why use it here?** It monitors how the battery and power delivery system (VRM) handle maximum power draw under full synthetic load, helping you detect sudden shutdowns, voltage drops, or thermal throttling.
