@@ -1,64 +1,44 @@
-# 💻 PC-Testing-Toolkit
+# 🛠️ PC-Testing-Toolkit
 
-The ultimate, comprehensive toolkit and guide to testing and inspecting new or used desktop PCs, laptops, and monitors before purchasing. Avoid hardware scams and detect hidden defects instantly.
-
----
-
-## 🚀 About The Project
-
-**PC-Testing-Toolkit** is an organized, portable repository that consolidates all essential diagnostic tools, scripts, and media files required to analyze hardware health. All integrated tools are lightweight and can be executed directly from a USB flash drive without requiring an internet connection during inspection.
+A comprehensive, lightweight, and production-ready diagnostic toolkit designed for hardware enthusiasts, system builders, and second-hand PC/laptop buyers. This toolkit helps validate specifications, bench performance, and detect hidden hardware defects or scams completely offline and online.
 
 ---
 
-## ⚠️ System Prerequisites (Install First)
+## 📂 Toolkit Modules & Quick Navigation
 
-Before running the diagnostics, some tools require the Microsoft Visual C++ runtime environment to prevent `.dll` errors. Please install the redistributables before testing:
-* [Visual C++ Redistributable x64 (Direct Download)](https://aka.ms)
 
----
-
-## 🛠️ Toolkit Structure & Directory Overview
-
-The repository is logically structured into specialized folders to ensure quick navigation during hardware inspections:
-
-### 1. 🔋 `Battery & Power`
-* Contains commands and utilities to test laptop battery health, wear level, and power draw.
-* [Go to Battery Guide](./Battery%20%26%20Power/README.md)
-
-### 2. 🧠 `CPU & GPU`
-* Dedicated to checking hardware specifications and performing intense stress tests on the processor and graphics card.
-* [Go to CPU & GPU Guide](./CPU%20%26%20GPU/README.md)
-
-### 3. 🖥 `Display & Monitor`
-* Contains web shortcuts and tools to isolate dead pixels, test screen refresh rates (Hz), and color accuracy.
-* [Go to Display Guide](./Display%20%26%20Monitor/README.md)
-
-### 4. 🔌 `Peripherals`
-* Quick utilities to verify external hardware parts like keyboards, webcams, microphones, and audio jacks.
-* [Go to Peripherals Guide](./Peripherals/README.md)
-
-### 5. 💽 `Storage & RAM`
-* Diagnostic tools to check hard drive health (SSD/HDD), read/write speeds, and memory stability.
-* [Go to Storage & RAM Guide](./Storage%20%26%20RAM/README.md)
-
-### 🎬 Video Tutorial & Practical Guide | `videoplayback.mp4`
-* **Function:** A comprehensive, step-by-step video guide explaining exactly how to use every tool in this toolkit to inspect your device effectively.
+| Module Icon | Diagnostic Category | Description & Included Capabilities | Directory Link |
+| :---: | :--- | :--- | :---: |
+| 🔋 | **Battery & Power** | Battery health, charge capacity report, and live wear level tracking. | [📂 Explore](./Battery%20%26%20Power) |
+| 🧠 | **CPU & GPU** | Component specification verification, stress testing, and thermal throttling checks. | [📂 Explore](./CPU%20%26%20GPU) |
+| 🖥️ | **Display & Monitor** | Dead/stuck pixel identification, backlight bleed testing, and ghosting analysis. | [📂 Explore](./Display%20%26%20Monitor) |
+| 🔌 | **Peripherals & Ports** | Keyboards, multi-touchpads, gaming mice polling rates, and external I/O port validations. | [📂 Explore](./Peripherals%20%26%20Port%20Validation) |
+| 💾 | **Storage & RAM** | Drive health monitoring, sequential speed benchmarks, and bootable memory diagnostics. | [📂 Explore](./Storage%20%26%20RAM) |
+| 🌐 | **Network & Wi-Fi** | Local network adapter auditing, live ping stability, and connection troubleshooting. | [📂 Explore](./Network%20%26%20Wi-Fi%20Diagnostics) |
 
 ---
 
-## ⚙️ Quick Start Guide
+## 🚀 Core Featured Utilities Inside
 
-1. Clone or download this repository by clicking the green **Code** button above and choosing **Download ZIP**.
-2. Extract the file structure directly onto a portable **USB Flash Drive**.
-3. Plug the USB drive into the target computer system and run the required diagnostics straight from the folders without any installation.
+* **Diagnostic Tools:** CPU-Z, GPU-Z, CrystalDiskInfo, Hard Disk Sentinel, WirelessNetView.
+* **Stress & Benchmark Tools:** AIDA64 Extreme, FurMark, Cinebench, CrystalDiskMark.
+* **Display & Peripheral Testers:** UDPixel22, Keyboard Test Utility, Web-based All-in-One Controller/Mouse tester.
+* **Deep Hardware Testers:** Bootable MemTest86+ Package, Windows Memory Diagnostic.
 
 ---
 
-## 🤝 Contributing
+## ⚠️ Global Testing Safety Guidelines (Must Read First)
 
-This project is open-source and community-driven! To contribute new tools, scripts, or documentation enhancements:
-1. **Fork** the repository.
-2. Create a feature **Branch** (`git checkout -b feature/AmazingTool`).
-3. Commit your modifications (`git commit -m 'Add some AmazingTool'`).
-4. **Push** to the branch (`git push origin feature/AmazingTool`).
-5. Open a **Pull Request**.
+Before launching heavy synthetic stress benchmarks across any directory, always implement these safety measures:
+1. **Never Benchmark on Battery:** Always connect your laptop to its AC wall charger before running benchmarks like FurMark or CrystalDiskMark to prevent power-throttling and inaccurate results.
+2. **Track Live Temperatures:** Keep HWMonitor or CrystalDiskInfo open in the background. If any core component (CPU, GPU, or NVMe SSD) exceeds **90°C–95°C**, stop the test immediately to prevent thermal degradation.
+3. **Save Work Before RAM Testing:** Built-in tools like `mdsched.exe` will force your operating system to reboot immediately. Always save your active files and close documents first.
+4. **Epilepsy Warning:** Screen fixing tools like UDPixel22 flash colors rapidly. Avoid staring directly at the flashing patterns if you are sensitive to rapid visual flashes.
+
+---
+
+## 💡 Quick Anti-Scam Guide for Used Hardware Buyers
+
+* **Hardware Spoofing:** Always match the specification string displayed in **CPU-Z** and **GPU-Z** against standard retail specs. Watch out for the "Fake" flag next to graphics card entries in GPU-Z.
+* **Storage S.M.A.R.T Tampering:** Scammers can wipe disk hours to mask a dying drive. Always cross-verify the **Total Host Writes (GB)** against **Power-on Hours** inside CrystalDiskInfo; high writes with low hours mean the data has been cleared.
+* **Ghost Typing:** Launch the peripheral tester and leave the keyboard untouched for 10 seconds. If random keys light up automatically on the layout, the keyboard has internal liquid or hardware damage.

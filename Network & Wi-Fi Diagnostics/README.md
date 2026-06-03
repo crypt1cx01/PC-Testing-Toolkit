@@ -5,18 +5,19 @@ This directory provides tools and guidelines to test internet performance, netwo
 ## 🛠️ Included Tools & Web Utilities
 
 ### 1. WirelessNetView (100% Free & Offline Tool)
-* **Local Folder:** [WirelessNetView Tool & Files](https://github.com)
+* **Local Package:** [WirelessNetView Local ZIP](./WirelessNetView/wirelessnetview.zip)
 * **How to Run:**
-  1. Open the folder and run `WirelessNetView.exe`.
-  2. The tool will instantly list all surrounding Wi-Fi networks and your active connection.
-  3. Look at the **Average Signal Quality** and **Channel Frequency** to evaluate how well your wireless card receives signals without needing an internet connection.
+  1. Extract the contents of the local **[wirelessnetview.zip](./WirelessNetView/wirelessnetview.zip)** file.
+  2. Open the extracted folder and run `WirelessNetView.exe`.
+  3. The tool will instantly list all surrounding Wi-Fi networks and your active connection.
+  4. Look at the **Average Signal Quality** and **Channel Frequency** to evaluate how well your wireless card receives signals without needing an internet connection.
 
 ### 2. Speedtest by Ookla
 * **Web Link:** [Speedtest Official Website](https://speedtest.net)
 * **Usage:** Click the **"GO"** button to measure download speed, upload speed, and network latency (Ping). Essential for testing the maximum throughput of the network card.
 
 ### 3. Live Ping & Packet Loss Monitor
-* **Web Link:** [Ping-CanBeUseful Tool](https://canbeuseful.com)
+* **Web Link:** [Ping-CanBeUseful Tool](https://ping.canbeuseful.com/en)
 * **Usage:** A visual, live tool that continuously pings servers to monitor connection stability. Leave it running in the background to catch sudden drops, spikes, or packet loss.
 
 ### 4. Windows Built-in Network Resetter
@@ -35,7 +36,7 @@ This directory provides tools and guidelines to test internet performance, netwo
 * **Stop Background Downloads:** Close games, torrents, or streaming tabs on all devices in your house while testing to get an accurate reading of the network adapter's actual capability.
 * **Hardware Overheating:** If your laptop Wi-Fi keeps disconnecting every few minutes under heavy downloads but works fine normally, the wireless card (usually Mediatek/Intel chips) might be overheating or loose.
 
-## 💡 Network Evaluation Checklist for Buyers (Step-by-Step)
+## 💡 Network Evaluation Checklist for Buyers (Step-Step)
 1. **The Wi-Fi Distance Test:** Move 5 to 10 meters away from the router or go to another room. Open the Live Ping monitor or WirelessNetView and watch for spikes. A high-quality Wi-Fi card should maintain a stable ping and high signal percentage even through walls.
 2. **Checking Max Supported Link Speed:** 
    * Press `Win + X` and open **Device Manager** -> **Network adapters**.
