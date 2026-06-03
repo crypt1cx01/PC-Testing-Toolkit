@@ -12,7 +12,7 @@ A comprehensive, lightweight, and production-ready diagnostic toolkit designed f
 | 🔋 | **Battery & Power** | Battery health, charge capacity report, and live wear level tracking. | [📂 Explore](./Battery%20%26%20Power) |
 | 🧠 | **CPU & GPU** | Component specification verification, stress testing, and thermal throttling checks. | [📂 Explore](./CPU%20%26%20GPU) |
 | 🖥️ | **Display & Monitor** | Dead/stuck pixel identification, backlight bleed testing, and ghosting analysis. | [📂 Explore](./Display%20%26%20Monitor) |
-| 🔌 | **Peripherals & Ports** | Keyboards, multi-touchpads, gaming mice polling rates, and external I/O port validations. | [📂 Explore](./Peripherals%20%26%20Port%20Validation) |
+| 🔌 | **Peripherals & Ports** | Keyboards, multi-touchpads, gaming mice polling rates, and external I/O port validations. | [📂 Explore](./Peripherals) |
 | 💾 | **Storage & RAM** | Drive health monitoring, sequential speed benchmarks, and bootable memory diagnostics. | [📂 Explore](./Storage%20%26%20RAM) |
 | 🌐 | **Network & Wi-Fi** | Local network adapter auditing, live ping stability, and connection troubleshooting. | [📂 Explore](./Network%20%26%20Wi-Fi%20Diagnostics) |
 
