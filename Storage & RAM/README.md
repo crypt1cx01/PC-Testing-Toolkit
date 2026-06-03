@@ -5,14 +5,14 @@ This directory contains powerful utilities to verify the health, lifespan, and s
 ## 🛠️ Included Tools & Operation Steps
 
 ### 1. CrystalDiskInfo
-* **Local Folder:** [CrystalDiskInfo Tool & Files](https://github.com)
+* **Local Folder:** [CrystalDiskInfo Tool & Files](https://github.com/crypt1cx01/PC-Testing-Toolkit/tree/main/Storage%20%26%20RAM/CrystalDiskInfo)
 * **How to Run:**
   1. Open the folder and run `DiskInfo64.exe` (or `DiskInfo32.exe` for older systems) as Administrator.
   2. The application will instantly load all connected drives.
   3. Look at the **Health Status** color indicator (Green = Good, Yellow = Caution, Red = Bad) and read the temperature.
 
 ### 2. CrystalDiskMark
-* **Local Folder:** [CrystalDiskMark Tool & Files](https://github.com)
+* **Local Folder:** [CrystalDiskMark Tool & Files](https://github.com/crypt1cx01/PC-Testing-Toolkit/tree/main/Storage%20%26%20RAM/CrystalDiskMark)
 * **How to Run:**
   1. Open the folder and run `DiskMark64.exe` as Administrator.
   2. Select the target drive letter from the dropdown menu on the top right.
@@ -20,7 +20,7 @@ This directory contains powerful utilities to verify the health, lifespan, and s
   4. Click the green **ALL** button to start the benchmarking process. Do not use the PC until the numbers stop changing.
 
 ### 3. Hard Disk Sentinel (HD-Sentinel)
-* **Local Folder:** [HD-Sentinel Tool & Files](https://github.com)
+* **Local Folder:** [HD-Sentinel Tool & Files](https://github.com/crypt1cx01/PC-Testing-Toolkit/tree/main/Storage%20%26%20RAM/HD-Sentinel)
 * **How to Run:**
   1. Launch the application from its executable file.
   2. Select your drive from the left sidebar panel.
@@ -34,7 +34,7 @@ This directory contains powerful utilities to verify the health, lifespan, and s
   4. The PC will restart into a blue diagnostic screen and start testing your RAM automatically.
 
 ### 5. MemTest86+ (Advanced RAM Bootable Tester)
-* **Local Folder:** [MemTest86 Tool & Files](https://github.com)
+* **Local Folder:** [MemTest86 Tool & Files](https://github.com/crypt1cx01/PC-Testing-Toolkit/tree/main/Storage%20%26%20RAM/RAM)
 * **How to Run:**
   1. Plug in an empty USB flash drive (all data on it will be wiped).
   2. Run the included USB installer tool and follow the steps to make the USB bootable.
