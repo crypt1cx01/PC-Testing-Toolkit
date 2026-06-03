@@ -1,3 +1,7 @@
+# MemTest86+
+* **Purpose:** Advanced, independent RAM stress-tester.
+* **Key Function:** Runs outside the Windows environment via a bootable USB drive to stress-test every memory block. It isolates the hardware completely to detect deep physical memory corruption, bit flips, and faults causing system Blue Screens (BSOD).
+
 1 ) عايزين فلاشه فاضيه
 2 ) تحميل الأداة مجانًا من موقعها الرسمي: MemTest86 Download (اختر نسخة Free Edition).
 
