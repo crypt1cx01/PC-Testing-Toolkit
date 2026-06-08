@@ -42,3 +42,9 @@ Before launching heavy synthetic stress benchmarks across any directory, always 
 * **Hardware Spoofing:** Always match the specification string displayed in **CPU-Z** and **GPU-Z** against standard retail specs. Watch out for the "Fake" flag next to graphics card entries in GPU-Z.
 * **Storage S.M.A.R.T Tampering:** Scammers can wipe disk hours to mask a dying drive. Always cross-verify the **Total Host Writes (GB)** against **Power-on Hours** inside CrystalDiskInfo; high writes with low hours mean the data has been cleared.
 * **Ghost Typing:** Launch the peripheral tester and leave the keyboard untouched for 10 seconds. If random keys light up automatically on the layout, the keyboard has internal liquid or hardware damage.
+
+---
+
+## 📜 License
+
+This automation suite is officially licensed and distributed under the **MIT Open-Source License** - see the [LICENSE](./LICENSE) document for more details.
