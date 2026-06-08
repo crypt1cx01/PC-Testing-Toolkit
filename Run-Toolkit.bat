@@ -1,73 +1,219 @@
 @echo off
-:: Check for Administrative privileges
+:: =====================================================================
+:: PC-Testing-Toolkit - Ultimate Automation Launcher (Part 1 - Final v9.2)
+:: GitHub: https://github.com/crypt1cx01/PC-Testing-Toolkit
+:: =====================================================================
+
+title PC-Testing-Toolkit Launcher v9.2
+mode con: cols=100 lines=34
+chcp 65001 >nul
+
+:: --- ADMIN PRIVILEGES CHECK ---
 net session >nul 2>&1
-if %errorLevel% == 0 (
-    goto :menu
-) else (
-    echo =====================================================
-    echo   ERROR: Please right-click and Run as Administrator!
-    echo =====================================================
+if %errorLevel% neq 0 (
+    echo ============================================================
+    echo   ERROR: ADMINISTRATOR PRIVILEGES REQUIRED
+    echo ============================================================
+    echo This toolkit requires admin rights to read hardware sensors.
+    echo Please right-click 'Run-Toolkit.bat' and select 'Run as administrator'.
+    echo ============================================================
     pause
-    exit
+    exit /b
 )
 
-:menu
+:: --- MAIN MENU LOOP ---
+:MAIN_MENU
+cls
+color 0B
+echo ====================================================================================================
+echo   [--------------------------------------------------------------------------------------]
+echo     P C   T E S T I N G   T O O L K I T   _   A U T O M A T I O N   L A U N C H E R
+echo   [--------------------------------------------------------------------------------------]
+echo     Main Portal - Managed Security and Stability                  Created by crypt1cx01
+echo ====================================================================================================
+echo.
+echo   1] CPU and GPU Diagnostics Menu                        5] Storage and RAM Testing Menu
+echo   2] System Stress Testing Menu                          6] Network and Peripherals Menu
+echo   3] Display and Monitor Diagnostics Menu                7] Visit Project GitHub
+echo   4] Install AIDA64 Pre-requisites                       0] Exit Toolkit
+echo.
+echo ====================================================================================================
+set /p choice="Enter your choice: "
+
+if "%choice%"=="1" goto DIAGNOSTICS_MENU
+if "%choice%"=="2" goto STRESS_MENU
+if "%choice%"=="3" goto DISPLAY_MENU
+if "%choice%"=="4" goto INSTALL_VCREDIST
+if "%choice%"=="5" goto STORAGE_MENU
+if "%choice%"=="6" goto NET_PERIPH_MENU
+if "%choice%"=="7" goto VISIT_GITHUB
+if "%choice%"=="0" exit
+goto MAIN_MENU
+:: =====================================================================
+:: --- 1. DIAGNOSTICS MENU ---
+:: =====================================================================
+:DIAGNOSTICS_MENU
 cls
 color 0A
-echo ============================================================
-echo               PC-Testing-Toolkit Automation Menu            
-echo ============================================================
-echo  1] Launch CPU-Z             7] Run Windows RAM Test
-echo  2] Launch GPU-Z             8] Create Bootable MemTest86 USB
-echo  3] Launch AIDA64 Extreme    9] Open WirelessNetView
-echo  4] Launch Cinebench         10] Open Battery HTML Report
-echo  5] Launch FurMark (32/64)   11] Open Peripherals Web Tester
-echo  6] Launch CrystalDiskInfo   12] Exit Toolkit
-echo                             13] Launch CrystalDiskMark
-echo                             14] Launch Hard Disk Sentinel
-echo ============================================================
-set /p choice="Enter your choice (1-14): "
+echo ====================================================================================================
+echo   CPU and GPU DIAGNOSTICS and VERIFICATION
+echo ====================================================================================================
+echo.
+echo   1] Launch CPU-Z             (Verify CPU, Motherboard and RAM Specs - Auto Extract)
+echo   2] Launch GPU-Z             (Verify Graphics Card and Detect Fake GPUs)
+echo   3] Run Speccy Setup         (Install Speccy Component and Live Thermal Monitor)
+echo                            ======================   ======================
+echo                                       0] Return to Main Menu
+echo                            ======================   ======================
+echo.
+echo ====================================================================================================
+set /p diag_choice="Select an option: "
 
-if "%choice%"=="1" goto :cpuz
-if "%choice%"=="2" goto :gpuz
-if "%choice%"=="3" goto :aida
-if "%choice%"=="4" goto :cine
-if "%choice%"=="5" goto :fur
-if "%choice%"=="6" goto :cdi
-if "%choice%"=="7" goto :ram
-if "%choice%"=="8" goto :memtest
-if "%choice%"=="9" goto :wifi
-if "%choice%"=="10" goto :batrep
-if "%choice%"=="11" goto :periph
-if "%choice%"=="12" exit
-if "%choice%"=="13" goto :cdm
-if "%choice%"=="14" goto :hds
-goto :menu
+if "%diag_choice%"=="1" ( call :RunCPUZ & goto DIAGNOSTICS_MENU )
+if "%diag_choice%"=="2" ( call :RunGPUZ & goto DIAGNOSTICS_MENU )
+if "%diag_choice%"=="3" ( call :RunSpeccy & goto DIAGNOSTICS_MENU )
+if "%diag_choice%"=="0" goto MAIN_MENU
+goto DIAGNOSTICS_MENU
 
-:cpuz
+:: =====================================================================
+:: --- 2. STRESS TESTING MENU ---
+:: =====================================================================
+:STRESS_MENU
+cls
+color 0C
+echo ====================================================================================================
+echo   SYSTEM STRESS TESTING and BENCHMARKS (Warning: Watch Temperatures!)
+echo ====================================================================================================
+echo.
+echo   1] Launch AIDA64 Extreme    (Full System Stability Test - Auto Extract)
+echo   2] Launch Cinebench         (CPU Rendering Benchmark - Auto Extract)
+echo   3] Launch FurMark (32/64)   (Heavy GPU Burn-in Stress Test - Select Architecture)
+echo                            ======================   ======================
+echo                                       0] Return to Main Menu
+echo                            ======================   ======================
+echo.
+echo ====================================================================================================
+set /p stress_choice="Select an option: "
+
+if "%stress_choice%"=="1" ( call :RunAIDA & goto STRESS_MENU )
+if "%stress_choice%"=="2" ( call :RunCinebench & goto STRESS_MENU )
+if "%stress_choice%"=="3" ( call :FurMarkArchitectureMenu & goto STRESS_MENU )
+if "%stress_choice%"=="0" goto MAIN_MENU
+goto STRESS_MENU
+:: =====================================================================
+:: --- 3. DISPLAY & MONITOR MENU ---
+:: =====================================================================
+:DISPLAY_MENU
+cls
+color 0D
+echo ====================================================================================================
+echo   DISPLAY and MONITOR DIAGNOSTICS
+echo ====================================================================================================
+echo.
+echo   1] Launch UDPixel22         (Stuck/Dead Pixel Fixer Utility - Auto Extract)
+echo   2] Open Dead Pixel Buddy    (Full-Screen Solid Colors Screen Tester)
+echo   3] Open EIZO Monitor Test   (Advanced Panel and Convergence Tester)
+echo   4] Open TestUFO Motion      (Monitor Refresh Rate and Ghosting Analyzer)
+echo                            ======================   ======================
+echo                                       0] Return to Main Menu
+echo                            ======================   ======================
+echo.
+echo ====================================================================================================
+set /p disp_choice="Select an option: "
+
+if "%disp_choice%"=="1" ( call :RunUDPixel & goto DISPLAY_MENU )
+if "%disp_choice%"=="2" ( start https://deadpixelbuddy.com & goto DISPLAY_MENU )
+if "%disp_choice%"=="3" ( start https://www.eizo.be/monitor-test & goto DISPLAY_MENU )
+if "%disp_choice%"=="4" ( start https://testufo.com & goto DISPLAY_MENU )
+if "%disp_choice%"=="0" goto MAIN_MENU
+goto DISPLAY_MENU
+
+:: =====================================================================
+:: --- 4. STORAGE and RAM MENU ---
+:: =====================================================================
+:STORAGE_MENU
+cls
+color 09
+echo ====================================================================================================
+echo   STORAGE and RAM DIAGNOSTICS
+echo ====================================================================================================
+echo.
+echo   1] Launch CrystalDiskInfo       (Check Drive Health/Smart - Auto Extract)
+echo   2] Launch CrystalDiskMark       (Drive Speed Benchmark - Fixed v9.0.3 Auto Extract)
+echo   3] Launch Hard Disk Sentinel    (Deep Drive Life Diagnostics - Deep RAR Extract Fixed)
+echo   4] Run Windows RAM Test         (Native Windows Memory Diagnostics)
+echo   5] Create Bootable MemTest86    (Flash MemTest86 Utility - Auto Extract)
+echo                            ======================   ======================
+echo                                       0] Return to Main Menu
+echo                            ======================   ======================
+echo.
+echo ====================================================================================================
+set /p store_choice="Select an option: "
+
+if "%store_choice%"=="1" ( call :RunCDI & goto STORAGE_MENU )
+if "%store_choice%"=="2" ( call :RunCDM & goto STORAGE_MENU )
+if "%store_choice%"=="3" ( call :RunHDS & goto STORAGE_MENU )
+if "%store_choice%"=="4" ( mdsched.exe & goto STORAGE_MENU )
+if "%store_choice%"=="5" ( call :RunMemTest & goto STORAGE_MENU )
+if "%store_choice%"=="0" goto MAIN_MENU
+goto STORAGE_MENU
+:: =====================================================================
+:: --- 5. NETWORK and PERIPHERALS MENU ---
+:: =====================================================================
+:NET_PERIPH_MENU
+cls
+color 0E
+echo ====================================================================================================
+echo   NETWORK, BATTERY and PERIPHERALS DIAGNOSTICS
+echo ====================================================================================================
+echo.
+echo   1] Open WirelessNetView        (Monitor Nearby WiFi Networks - Auto Extract)
+echo   2] Open Battery HTML Report    (Generates Detailed Windows Laptop Battery Report)
+echo   3] Launch Keyboard Utility     (Test Keyboard Ghost Typing - Direct Executable)
+echo   4] Open Webcam and Mic Test    (Launches Web App to Test Inputs Online)
+echo   5] Open Audio and Speaker Test (Launches Frequency Generator App Online)
+echo   6] Open Peripherals Tester     (Launches Web App to Test Keyboard and Mouse Online)
+echo                            ======================   ======================
+echo                                       0] Return to Main Menu
+echo                            ======================   ======================
+echo.
+echo ====================================================================================================
+set /p net_choice="Select an option: "
+
+if "%net_choice%"=="1" ( call :RunWiFi & goto NET_PERIPH_MENU )
+if "%net_choice%"=="2" ( call :RunBatteryReport & goto NET_PERIPH_MENU )
+if "%net_choice%"=="3" ( call :RunKeyboardTest & goto NET_PERIPH_MENU )
+if "%net_choice%"=="4" ( start https://webcamtests.com & goto NET_PERIPH_MENU )
+if "%net_choice%"=="5" ( start https://audiocheck.net & goto NET_PERIPH_MENU )
+if "%net_choice%"=="6" ( start https://keyboard-mouse-tester-web-app.vercel.app & goto NET_PERIPH_MENU )
+if "%net_choice%"=="0" goto MAIN_MENU
+goto NET_PERIPH_MENU
+
+
+:: =====================================================================
+:: --- SUBROUTINES: SAFE EXECUTION ENGINE (A to G) ---
+:: =====================================================================
+
+:RunCPUZ
 cls
 echo Extracting and Launching CPU-Z...
 cd /d "%~dp0CPU & GPU\cpu-z"
 if exist "cpu-z_2.20.1-en.zip" (
     if not exist "Extracted_CPUZ" mkdir "Extracted_CPUZ"
     powershell -Command "Expand-Archive -Path 'cpu-z_2.20.1-en.zip' -DestinationPath 'Extracted_CPUZ' -Force"
-    
-    :: Smart architecture detection for CPU-Z (64-bit vs 32-bit)
     if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (
-        if exist "Extracted_CPUZ\cpuz_x64.exe" ( start "" "Extracted_CPUZ\cpuz_x64.exe" & goto :menu )
+        if exist "Extracted_CPUZ\cpuz_x64.exe" ( start "" "Extracted_CPUZ\cpuz_x64.exe" & exit /b )
     )
-    if exist "Extracted_CPUZ\cpuz_x32.exe" ( start "" "Extracted_CPUZ\cpuz_x32.exe" & goto :menu )
-    if exist "Extracted_CPUZ\cpuz.exe" ( start "" "Extracted_CPUZ\cpuz.exe" & goto :menu )
-    
+    if exist "Extracted_CPUZ\cpuz_x32.exe" ( start "" "Extracted_CPUZ\cpuz_x32.exe" & exit /b )
+    if exist "Extracted_CPUZ\cpuz.exe" ( start "" "Extracted_CPUZ\cpuz.exe" & exit /b )
     echo Error: CPU-Z executable could not be targeted inside the ZIP!
-    pause
 ) else (
     echo Error: cpu-z_2.20.1-en.zip not found!
-    pause
 )
-goto :menu
+pause
+exit /b
 
-:gpuz
+:RunGPUZ
 cls
 echo Launching GPU-Z...
 cd /d "%~dp0CPU & GPU\gpu-z"
@@ -77,69 +223,139 @@ if exist "GPU-Z.2.69.0.exe" (
     echo Error: GPU-Z.2.69.0.exe not found! 
     pause 
 )
-goto :menu
+exit /b
 
-:aida
+:RunSpeccy
+cls
+echo Launching Speccy Setup Wizard...
+cd /d "%~dp0CPU & GPU\Speccy"
+if exist "spsetup133.exe" (
+    start "" "spsetup133.exe"
+) else (
+    echo Error: spsetup133.exe not found!
+    pause
+)
+exit /b
+
+:RunUDPixel
+cls
+echo Extracting and Launching UDPixel22...
+cd /d "%~dp0Display & Monitor"
+set "ud_found="
+for /r %%f in (*UDPixel*.zip) do (
+    set "ud_found=1"
+    if not exist "Extracted_UDPixel" mkdir "Extracted_UDPixel"
+    powershell -Command "Expand-Archive -Path '%%f' -DestinationPath 'Extracted_UDPixel' -Force"
+    if exist "Extracted_UDPixel\UDPixel.exe" ( start "" "Extracted_UDPixel\UDPixel.exe" & exit /b )
+    for %%e in ("Extracted_UDPixel\*.exe") do ( start "" "%%e" & exit /b )
+    echo Error: UDPixel executable could not be targeted inside the ZIP!
+    pause
+)
+if not defined ud_found (
+    echo Error: UDPixel ZIP archive not found!
+    pause
+)
+exit /b
+:RunAIDA
 cls
 echo Extracting and Launching AIDA64 Extreme...
 cd /d "%~dp0CPU & GPU\AIDA64"
+set "aida_found="
 for %%f in (*aida*.zip) do (
+    set "aida_found=1"
     if not exist "Extracted_AIDA" mkdir "Extracted_AIDA"
     powershell -Command "Expand-Archive -Path '%%f' -DestinationPath 'Extracted_AIDA' -Force"
     start "" "Extracted_AIDA\aida64.exe"
-    goto :menu
 )
-echo Error: AIDA64 ZIP archive not found!
-pause
-goto :menu
+if not defined aida_found (
+    echo Error: AIDA64 ZIP archive not found!
+    pause
+)
+exit /b
 
-:cine
+:RunCinebench
 cls
 echo Extracting and Launching Cinebench Benchmark...
 cd /d "%~dp0CPU & GPU\Cinebench"
+set "cine_found="
 for %%f in (*cinebench*.zip) do (
+    set "cine_found=1"
     if not exist "Extracted_Cinebench" mkdir "Extracted_Cinebench"
     powershell -Command "Expand-Archive -Path '%%f' -DestinationPath 'Extracted_Cinebench' -Force"
-    
-    :: Launch standard executable
-    if exist "Extracted_Cinebench\Cinebench.exe" ( start "" "Extracted_Cinebench\Cinebench.exe" & goto :menu )
-    for %%e in ("Extracted_Cinebench\*cinebench*.exe") do ( start "" "%%e" & goto :menu )
-    
-    echo Error: Cinebench executable not found inside the ZIP!
-    pause
-    goto :menu
-)
-echo Error: Cinebench ZIP archive not found!
-pause
-goto :menu
-
-:fur
-cls
-echo Extracting and Launching FurMark Stress Test...
-cd /d "%~dp0CPU & GPU\FurMark"
-for %%f in (*furmark*.zip) do (
-    if not exist "Extracted_FurMark" mkdir "Extracted_FurMark"
-    powershell -Command "Expand-Archive -Path '%%f' -DestinationPath 'Extracted_FurMark' -Force"
-    
-    :: Smart architecture detection for FurMark (64-bit vs 32-bit)
-    if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (
-        if exist "Extracted_FurMark\FurMark64.exe" ( start "" "Extracted_FurMark\FurMark64.exe" & goto :menu )
-        if exist "Extracted_FurMark\FurMark_x64.exe" ( start "" "Extracted_FurMark\FurMark_x64.exe" & goto :menu )
+    if exist "Extracted_Cinebench\CINEBENCH R23\Cinebench.exe" (
+        cd "Extracted_Cinebench\CINEBENCH R23"
+        start "" "Cinebench.exe"
+        exit /b
     )
-    if exist "Extracted_FurMark\FurMark32.exe" ( start "" "Extracted_FurMark\FurMark32.exe" & goto :menu )
-    if exist "Extracted_FurMark\FurMark_x32.exe" ( start "" "Extracted_FurMark\FurMark_x32.exe" & goto :menu )
-    if exist "Extracted_FurMark\FurMark.exe" ( start "" "Extracted_FurMark\FurMark.exe" & goto :menu )
-    for %%e in ("Extracted_FurMark\*.exe") do ( start "" "%%e" & goto :menu )
-    
-    echo Error: FurMark executable could not be targeted inside the ZIP!
+    echo Error: Cinebench.exe could not be targeted in 'Extracted_Cinebench\CINEBENCH R23\'!
     pause
-    goto :menu
 )
-echo Error: FurMark ZIP archive not found!
-pause
-goto :menu
+if not defined cine_found (
+    echo Error: Cinebench ZIP archive not found!
+    pause
+)
+exit /b
 
-:cdi
+:FurMarkArchitectureMenu
+cls
+color 0C
+echo ====================================================================================================
+echo   FURMARK ARCHITECTURE SELECTION
+echo ====================================================================================================
+echo.
+echo   1] Launch FurMark 64-Bit   (Recommended for modern PCs)
+echo   2] Launch FurMark 32-Bit   (For legacy x86 systems)
+echo                            ======================   ======================
+echo                                       0] Return to Main Menu
+echo                            ======================   ======================
+echo.
+echo ====================================================================================================
+set /p fur_bit="Select version: "
+if "%fur_bit%"=="1" ( call :RunFurMark64 & exit /b )
+if "%fur_bit%"=="2" ( call :RunFurMark32 & exit /b )
+if "%fur_bit%"=="0" exit /b
+goto FurMarkArchitectureMenu
+
+:RunFurMark64
+cls
+echo Extracting and Launching FurMark 64-Bit...
+cd /d "%~dp0CPU & GPU\FurMark"
+if exist "FurMark_2.10.2_win64.zip" (
+    if not exist "Extracted_FurMark64" mkdir "Extracted_FurMark64"
+    powershell -Command "Expand-Archive -Path 'FurMark_2.10.2_win64.zip' -DestinationPath 'Extracted_FurMark64' -Force"
+    if exist "Extracted_FurMark64\FurMark_win64\FurMark_GUI.exe" (
+        cd "Extracted_FurMark64\FurMark_win64"
+        start "" "FurMark_GUI.exe"
+        exit /b
+    )
+    echo Error: FurMark_GUI.exe could not be targeted in 'Extracted_FurMark64\FurMark_win64\'!
+) else (
+    echo Error: FurMark_2.10.2_win64.zip not found!
+)
+pause
+exit /b
+
+:RunFurMark32
+cls
+color 0A
+echo Extracting and Launching FurMark 32-Bit...
+cd /d "%~dp0CPU & GPU\FurMark"
+if exist "FurMark_2.10.2_win32.zip" (
+    if not exist "Extracted_FurMark32" mkdir "Extracted_FurMark32"
+    powershell -Command "Expand-Archive -Path 'FurMark_2.10.2_win32.zip' -DestinationPath 'Extracted_FurMark32' -Force"
+    if exist "Extracted_FurMark32\FurMark_win32\FurMark_GUI.exe" (
+        cd "Extracted_FurMark32\FurMark_win32"
+        start "" "FurMark_GUI.exe"
+        exit /b
+    )
+    echo Error: FurMark_GUI.exe could not be targeted in 'Extracted_FurMark32\FurMark_win32\'!
+) else (
+    echo Error: FurMark_2.10.2_win32.zip not found!
+)
+pause
+exit /b
+
+:RunCDI
 cls
 echo Extracting and Launching CrystalDiskInfo...
 cd /d "%~dp0Storage & RAM\CrystalDiskInfo"
@@ -151,43 +367,42 @@ if exist "CrystalDiskInfo9_7_2.zip" (
     echo Error: CrystalDiskInfo9_7_2.zip not found!
     pause
 )
-goto :menu
+exit /b
 
-:cdm
+:RunCDM
 cls
-echo Extracting and Launching CrystalDiskMark...
+echo Extracting and Launching CrystalDiskMark v9.0.3...
 cd /d "%~dp0Storage & RAM\CrystalDiskMark"
-if exist "CrystalDiskMark8_0_6.zip" (
+if exist "CrystalDiskMark9_0_3.zip" (
     if not exist "Extracted_CDM" mkdir "Extracted_CDM"
-    powershell -Command "Expand-Archive -Path 'CrystalDiskMark8_0_6.zip' -DestinationPath 'Extracted_CDM' -Force"
+    powershell -Command "Expand-Archive -Path 'CrystalDiskMark9_0_3.zip' -DestinationPath 'Extracted_CDM' -Force"
     start "" "Extracted_CDM\DiskMark64.exe"
 ) else (
-    echo Error: CrystalDiskMark8_0_6.zip not found!
+    echo Error: CrystalDiskMark9_0_3.zip not found!
     pause
 )
-goto :menu
+exit /b
 
-:hds
+:RunHDS
 cls
-echo Extracting and Launching Hard Disk Sentinel...
+echo Extracting Hard Disk Sentinel RAR Package...
 cd /d "%~dp0Storage & RAM\HD-Sentinel"
-if exist "hdsentinel_pro_portable.zip" (
+if exist "hdsentinel_setup.rar" (
     if not exist "Extracted_HDS" mkdir "Extracted_HDS"
-    powershell -Command "Expand-Archive -Path 'hdsentinel_pro_portable.zip' -DestinationPath 'Extracted_HDS' -Force"
-    start "" "Extracted_HDS\HDSentinel.exe"
+    tar -xf "hdsentinel_setup.rar" -C "Extracted_HDS" 2>nul
+    if exist "Extracted_HDS\hdsentinel_setup\hdsentinel_setup.exe" (
+        cd "Extracted_HDS\hdsentinel_setup"
+        start "" "hdsentinel_setup.exe"
+        exit /b
+    )
+    echo Error: hdsentinel_setup.exe could not be found inside 'Extracted_HDS\hdsentinel_setup\'!
 ) else (
-    echo Error: hdsentinel_pro_portable.zip not found!
-    pause
+    echo Error: hdsentinel_setup.rar not found!
 )
-goto :menu
+pause
+exit /b
 
-:ram
-cls
-echo Launching Windows Memory Diagnostic...
-mdsched.exe
-goto :menu
-
-:memtest
+:RunMemTest
 cls
 echo Extracting MemTest86 Flashing Utility...
 cd /d "%~dp0Storage & RAM\RAM\memtest86"
@@ -202,9 +417,9 @@ if exist "memtest86-usb.zip" (
     echo Error: memtest86-usb.zip not found!
     pause
 )
-goto :menu
+exit /b
 
-:wifi
+:RunWiFi
 cls
 echo Extracting and Launching WirelessNetView...
 cd /d "%~dp0Network & Wi-Fi Diagnostics\WirelessNetView"
@@ -216,17 +431,60 @@ if exist "wirelessnetview.zip" (
     echo Error: wirelessnetview.zip not found!
     pause
 )
-goto :menu
+exit /b
 
-:batrep
+:RunKeyboardTest
 cls
-echo Generating and Opening Battery Report...
-powercfg /batteryreport /output "%~dp0battery_report.html"
-start "" "%~dp0battery_report.html"
-goto :menu
+echo Launching Keyboard Test Utility...
+cd /d "%~dp0Peripherals\keyboard-test"
+if exist "keyboardtestutility.exe" (
+    start "" "keyboardtestutility.exe"
+    exit /b
+) else (
+    echo Error: keyboardtestutility.exe not found in 'Peripherals\keyboard-test\'!
+    pause
+)
+exit /b
 
-:periph
+:RunBatteryReport
 cls
-echo Opening All-in-One Peripherals Web Tester...
-start https://keyboard-mouse-tester-web-app.vercelapp
-goto :menu
+color 0A
+echo Generating Detailed Laptop Battery Report...
+powercfg /batteryreport /output "%~dp0battery_report.html" >nul 2>&1
+if exist "%~dp0battery_report.html" (
+    echo.
+    echo Battery Report generated successfully!
+    echo Opening 'battery_report.html' in your default browser...
+    start "" "%~dp0battery_report.html"
+) else (
+    echo Error: Windows powercfg failed to generate the report.
+    echo Make sure you are testing on a laptop with a battery pack.
+)
+pause
+exit /b
+
+:INSTALL_VCREDIST
+cls
+color 0D
+echo ====================================================================================================
+echo   DEPENDENCY INSTALLER
+echo ====================================================================================================
+echo.
+echo   Installing Microsoft Visual C++ Redistributable x64...
+echo   Required for stable AIDA64 execution.
+echo.
+cd /d "%~dp0CPU & GPU\AIDA64"
+if exist "VC_redist.x64.exe" (
+    echo Running installer...
+    start /wait "" "VC_redist.x64.exe" /passive /norestart
+    echo VC_redist installation task finished!
+) else (
+    echo Error: 'VC_redist.x64.exe' was not found in the AIDA64 folder.
+)
+pause
+goto MAIN_MENU
+
+:VISIT_GITHUB
+echo Opening GitHub Repository in your browser...
+start https://github.com/crypt1cx01/PC-Testing-Toolkit
+goto MAIN_MENU
