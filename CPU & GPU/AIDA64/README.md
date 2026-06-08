@@ -7,7 +7,18 @@
 ## 🛠️ System Requirements
 * **OS:** Windows 7, 8, 10, 11 (32/64-bit).
 * **Permissions:** **Must run as Administrator** to deploy the kernel driver required for low-level hardware access and sensor monitoring.
-* **Dependencies:** Install `VC_redist.x64.exe` located in the same directory if you experience any runtime initialization errors.
+
+---
+
+## 📦 Required Dependency Installation (VC_redist)
+Before running AIDA64, you must ensure that the Microsoft Visual C++ Redistributable environment is installed. If it is missing, the tool will fail to initialize or throw runtime `.dll` errors.
+
+### How to Install:
+1. Locate the **`VC_redist.x64.exe`** file inside this folder.
+2. Right-click the file and select **Run as Administrator**.
+3. Check the "I agree to the license terms and conditions" box, then click **Install**.
+4. If a restart is prompted after installation, please restart your PC to apply changes before launching AIDA64.
+*Note: If it says "Another version of this product is already installed," you can safely skip this step and run the tool directly.*
 
 ---
 
