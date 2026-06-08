@@ -12,15 +12,19 @@ This directory validates hardware specifications and pushes the components to th
 * **Local Folder:** [GPU-Z Tool & Files](https://github.com/crypt1cx01/PC-Testing-Toolkit/tree/main/CPU%20%26%20GPU/gpu-z)
 * **Usage:** Evaluates graphics card details. Make sure the "Fake" flag does not appear next to the GPU name.
 
-### 3. AIDA64 Extreme (System Stability Test)
+### 3. Speccy
+* **Local Folder:** [Speccy Tool & Files](https://github.com/crypt1cx01/PC-Testing-Toolkit/tree/main/CPU%20%26%20GPU/Speccy)
+* **Usage:** Run with administrator privileges to get a comprehensive, real-time snapshot of system hardware specifications and components temperatures.
+
+### 4. AIDA64 Extreme (System Stability Test)
 * **Local Folder:** [AIDA64 Tool & Files](https://github.com/crypt1cx01/PC-Testing-Toolkit/tree/main/CPU%20%26%20GPU/AIDA64)
 * **Usage:** Open AIDA64, go to `Tools` -> `System Stability Test`. Check all boxes and click `Start` to stress test the entire system for 5–10 minutes while monitoring temperatures.
 
-### 4. FurMark
+### 5. FurMark
 * **Local Folder:** [FurMark Tool & Files](https://github.com/crypt1cx01/PC-Testing-Toolkit/tree/main/CPU%20%26%20GPU/FurMark)
 * **Usage:** Heavy GPU stress test to push graphics card power limits and detect thermal throttling or artifacts.
 
-### 5. Cinebench
+### 6. Cinebench
 * **Local Folder:** [Cinebench Tool & Files](https://github.com/crypt1cx01/PC-Testing-Toolkit/tree/main/CPU%20%26%20GPU/Cinebench)
 * **Usage:** CPU rendering benchmark to evaluate raw multicore/single-core processing performance.
 
