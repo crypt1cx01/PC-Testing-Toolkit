@@ -1,28 +1,28 @@
 # 📊 Speccy
 
-**Speccy** هي أداة متقدمة وخفيفة الوزن وخيار مثالي في قسم **CPU & GPU** للحصول على تقرير شامل وفوري عن مواصفات جهازك بالكامل ودرجات حرارة القطع في الوقت الفعلي [1.1.1، 1.3.2].
+**Speccy** is an advanced, lightweight tool and an ideal choice for the **CPU & GPU** section to get a comprehensive, real-time breakdown of your system's hardware specifications and component temperatures.
 
 ---
 
-## 🚀 فوائد الأداة في فحص الأجهزة (Testing & Diagnostics)
+## 🚀 Key Benefits for Hardware Testing & Diagnostics
 
-* **مراقبة درجات الحرارة (Real-time Temps):** تعرض درجة حرارة المعالج (CPU) وكارت الشاشة (GPU) والهارديسك لحظة بلحظة لكشف مشاكل التبريد [1.3.2، 1.3.9].
-* **تفاصيل المعالج العميقة (CPU Insights):** معرفة اسم المعالج بدقة، نوع المقبس (Socket)، دقة التصنيع، والتردد الفعلي لكل نواة [1.3.1، 1.3.19].
-* **معلومات كارت الشاشة (GPU Specs):** تفاصيل كاملة عن الشركة المصنعة، الموديل، حجم الذاكرة (VRAM)، والترددات الحالية [1.3.15، 1.3.19].
-* **حفظ لقطات النظام (Snapshots):** يمكنك التقاط نسخة (Snapshot) من مواصفات الجهاز ومشاركتها مع فني الصيانة أو العميل لتوثيق حالة الجهاز.
-
----
-
-## 🛠️ كيفية الاستخدام لفحص الـ CPU & GPU
-
-1. **تشغيل الأداة:** قم بفتح الأداة (تتطلب صلاحيات المسؤول Admin لتتمكن من قراءة الحساسات) [1.1.1، 1.3.7].
-2. **شاشة الملخص (Summary):** ستظهر لك نظرة عامة سريعة على كافة قطع الجهاز مع درجات حرارتها بجانب المعالج وكارت الشاشة مباشرة [1.3.2، 1.3.9].
-3. **فحص المعالج (CPU Section):** اضغط على **CPU** من القائمة اليسرى لمعاينة أداء الأنوية وتأكيد تفعيل تقنيات مثل Virtualization.
-4. **فحص كارت الشاشة (Graphics Section):** اضغط على **Graphics** لمعرفة نوع ومواصفات الكارت بدقة والتأكد من قراءته بشكل سليم.
+* **Real-Time Temperature Monitoring:** Tracks CPU, GPU, and storage temperatures live to easily detect thermal throttling or cooling issues.
+* **Deep CPU Insights:** Displays exact processor name, socket type, technology node, and active clock speeds for each core.
+* **Detailed GPU Specs:** Provides full details on manufacturer, model, dedicated video memory (VRAM), and current operating frequencies.
+* **System Snapshots:** Allows you to take a "Snapshot" of the hardware state to save or share with technical support and clients to document PC health.
 
 ---
 
-## 💾 ميزات إضافية للمحترفين
+## 🛠️ How to Use for CPU & GPU Verification
 
-* **تصدير التقارير:** يمكنك حفظ التقرير بصيغة ملف نصي `TXT` أو `XML` للرجوع إليه لاحقاً.
-* **أداة محمولة (Portable):** تعمل مباشرة دون الحاجة لتثبيت، مما يجعلها مثالية لوضعها على الفلاشة الخاصة بك في Toolkit [1.3.5، 1.3.10].
+1. **Launch the Tool:** Run the application (requires Administrator privileges to properly read all hardware sensors).
+2. **Summary Dashboard:** Review the main landing page for an immediate overview of all key components and their current operating temperatures.
+3. **Analyze CPU:** Click **CPU** in the left sidebar to inspect core performance, cache details, and virtualization status.
+4. **Analyze GPU:** Click **Graphics** to verify exact GPU specifications and ensure the display drivers are reading the card correctly.
+
+---
+
+## 💾 Advanced Pro Features
+
+* **Export Reports:** Save system data directly into standard `TXT` or `XML` formats for easy future reference.
+* **Fully Portable:** Runs natively without installation, making it perfect for your USB-based diagnostic toolkit.
