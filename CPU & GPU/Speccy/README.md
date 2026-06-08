@@ -1,28 +1,32 @@
-# 📊 Speccy
+# 📊 Speccy - Hardware Information & Diagnostics
 
-**Speccy** is an advanced, lightweight tool and an ideal choice for the **CPU & GPU** section to get a comprehensive, real-time breakdown of your system's hardware specifications and component temperatures.
-
----
-
-## 🚀 Key Benefits for Hardware Testing & Diagnostics
-
-* **Real-Time Temperature Monitoring:** Tracks CPU, GPU, and storage temperatures live to easily detect thermal throttling or cooling issues.
-* **Deep CPU Insights:** Displays exact processor name, socket type, technology node, and active clock speeds for each core.
-* **Detailed GPU Specs:** Provides full details on manufacturer, model, dedicated video memory (VRAM), and current operating frequencies.
-* **System Snapshots:** Allows you to take a "Snapshot" of the hardware state to save or share with technical support and clients to document PC health.
+**Speccy** is a lightweight tool for real-time monitoring of CPU, GPU, and system temperatures.
 
 ---
 
-## 🛠️ How to Use for CPU & GPU Verification
-
-1. **Launch the Tool:** Run the application (requires Administrator privileges to properly read all hardware sensors).
-2. **Summary Dashboard:** Review the main landing page for an immediate overview of all key components and their current operating temperatures.
-3. **Analyze CPU:** Click **CPU** in the left sidebar to inspect core performance, cache details, and virtualization status.
-4. **Analyze GPU:** Click **Graphics** to verify exact GPU specifications and ensure the display drivers are reading the card correctly.
+## 🛠️ System Requirements
+* **OS:** Windows 7, 8, 10, 11 (32/64-bit).
+* **Permissions:** Must run as **Administrator** for sensor access.
+* **Internet:** Not required.
 
 ---
 
-## 💾 Advanced Pro Features
+## 🚀 Key Features
+* **Live Monitoring:** Tracks CPU, GPU, and storage temperatures to identify cooling issues.
+* **Deep Details:** Displays core specs, socket type, and VRAM information.
+* **Snapshots:** Enables saving system states for technical support.
 
-* **Export Reports:** Save system data directly into standard `TXT` or `XML` formats for easy future reference.
-* **Fully Portable:** Runs natively without installation, making it perfect for your USB-based diagnostic toolkit.
+---
+
+## 💻 Usage & Anti-Scam Verification
+1. **Run:** Execute as Administrator.
+2. **Summary:** Review component temperatures immediately.
+3. **Hardware Check:** Verify CPU/GPU specs against manufacturer data to detect fake hardware.
+4. **Validation:** Check motherboard, RAM, and BIOS versions.
+
+---
+
+## ⚠️ Warnings & Safety
+* **Temp Readings:** Allow 5-10 seconds for sensors to stabilize after heavy load.
+* **Overheating:** Watch for orange/red alerts; temperatures exceeding 85°C-90°C indicate potential danger.
+* **Security:** Be aware that saved snapshots may contain network information.
