@@ -1,22 +1,22 @@
 @echo off
 :: =====================================================================
-:: PC-Testing-Toolkit - Ultimate Automation Launcher (Part 1 - Final v9.2)
+:: PC-Testing-Toolkit - Ultimate Automation Launcher (Part 1 - Final v1.0)
 :: GitHub: https://github.com/crypt1cx01/PC-Testing-Toolkit
 :: =====================================================================
 
-title PC-Testing-Toolkit Launcher v9.2
+title PC-Testing-Toolkit Launcher v1.0
 mode con: cols=100 lines=34
 chcp 65001 >nul
 
 :: --- ADMIN PRIVILEGES CHECK ---
 net session >nul 2>&1
 if %errorLevel% neq 0 (
-    echo ============================================================
-    echo   ERROR: ADMINISTRATOR PRIVILEGES REQUIRED
-    echo ============================================================
+    echo ========================================================================
+    echo            ERROR: ADMINISTRATOR PRIVILEGES REQUIRED
+    echo ========================================================================
     echo This toolkit requires admin rights to read hardware sensors.
     echo Please right-click 'Run-Toolkit.bat' and select 'Run as administrator'.
-    echo ============================================================
+    echo ========================================================================
     pause
     exit /b
 )
@@ -35,7 +35,7 @@ echo.
 echo   1] CPU and GPU Diagnostics Menu                        5] Storage and RAM Testing Menu
 echo   2] System Stress Testing Menu                          6] Network and Peripherals Menu
 echo   3] Display and Monitor Diagnostics Menu                7] Visit Project GitHub
-echo   4] Install AIDA64 Pre-requisites                       0] Exit Toolkit
+echo   4] Install AIDA64 Pre-requisites                       0] Exit
 echo.
 echo ====================================================================================================
 set /p choice="Enter your choice: "
@@ -56,7 +56,7 @@ goto MAIN_MENU
 cls
 color 0A
 echo ====================================================================================================
-echo   CPU and GPU DIAGNOSTICS and VERIFICATION
+echo                                  CPU and GPU DIAGNOSTICS and VERIFICATION
 echo ====================================================================================================
 echo.
 echo   1] Launch CPU-Z             (Verify CPU, Motherboard and RAM Specs - Auto Extract)
@@ -82,7 +82,7 @@ goto DIAGNOSTICS_MENU
 cls
 color 0C
 echo ====================================================================================================
-echo   SYSTEM STRESS TESTING and BENCHMARKS (Warning: Watch Temperatures!)
+echo                   SYSTEM STRESS TESTING and BENCHMARKS (Warning: Watch Temperatures!)
 echo ====================================================================================================
 echo.
 echo   1] Launch AIDA64 Extreme    (Full System Stability Test - Auto Extract)
@@ -107,7 +107,7 @@ goto STRESS_MENU
 cls
 color 0D
 echo ====================================================================================================
-echo   DISPLAY and MONITOR DIAGNOSTICS
+echo                                    DISPLAY and MONITOR DIAGNOSTICS
 echo ====================================================================================================
 echo.
 echo   1] Launch UDPixel22         (Stuck/Dead Pixel Fixer Utility - Auto Extract)
@@ -135,7 +135,7 @@ goto DISPLAY_MENU
 cls
 color 09
 echo ====================================================================================================
-echo   STORAGE and RAM DIAGNOSTICS
+echo                                      STORAGE and RAM DIAGNOSTICS
 echo ====================================================================================================
 echo.
 echo   1] Launch CrystalDiskInfo       (Check Drive Health/Smart - Auto Extract)
@@ -164,7 +164,7 @@ goto STORAGE_MENU
 cls
 color 0E
 echo ====================================================================================================
-echo   NETWORK, BATTERY and PERIPHERALS DIAGNOSTICS
+echo                              NETWORK, BATTERY and PERIPHERALS DIAGNOSTICS
 echo ====================================================================================================
 echo.
 echo   1] Open WirelessNetView        (Monitor Nearby WiFi Networks - Auto Extract)
@@ -188,7 +188,6 @@ if "%net_choice%"=="5" ( start https://audiocheck.net & goto NET_PERIPH_MENU )
 if "%net_choice%"=="6" ( start https://keyboard-mouse-tester-web-app.vercel.app & goto NET_PERIPH_MENU )
 if "%net_choice%"=="0" goto MAIN_MENU
 goto NET_PERIPH_MENU
-
 
 :: =====================================================================
 :: --- SUBROUTINES: SAFE EXECUTION ENGINE (A to G) ---
@@ -300,7 +299,7 @@ exit /b
 cls
 color 0C
 echo ====================================================================================================
-echo   FURMARK ARCHITECTURE SELECTION
+echo                                   FURMARK ARCHITECTURE SELECTION
 echo ====================================================================================================
 echo.
 echo   1] Launch FurMark 64-Bit   (Recommended for modern PCs)
@@ -467,7 +466,7 @@ exit /b
 cls
 color 0D
 echo ====================================================================================================
-echo   DEPENDENCY INSTALLER
+echo                                         DEPENDENCY INSTALLER
 echo ====================================================================================================
 echo.
 echo   Installing Microsoft Visual C++ Redistributable x64...
