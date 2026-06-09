@@ -40,6 +40,21 @@ To ensure safety and the latest updates, here is the list of core tools included
 | **Diagnostics** | AIDA64 | Comprehensive system information and stability test | [AIDA64](https://www.aida64.com/downloads) |
 | **Diagnostics** | HWMONITOR | Hardware temperature, voltage, and fan speed monitoring | [HWMONITOR](https://cpuid.com/softwares/hwmonitor.html) |
 
+## 📖 Usage Guide & Menu Structure
+
+To start using the toolkit, simply right-click on **`Run-Toolkit.bat`** and select **Run as Administrator** (or just double-click it, and the script will automatically request Admin privileges). 
+
+Once launched, you can navigate through the toolkit completely using your keyboard numbers **[0-7]**. Here is the master menu breakdown:
+
+*   **`1` ➜ CPU and GPU Diagnostics Menu:** Quick access to processors and graphics cards identification and health tools.
+*   **`2` ➜ System Stress Testing Menu:** Utilities to push your hardware to the limits and test system stability.
+*   **`3` ➜ Display and Monitor Diagnostics Menu:** Tools to check for dead pixels, screen bleeding, and color accuracy.
+*   **`4` ➜ Install AIDA64 Pre-requisites:** Automatically installs the required Microsoft Visual C++ Redistributable (**`VC_redist.x64.exe`**) to run AIDA64 smoothly.
+*   **`5` ➜ Storage and RAM Testing Menu:** Dedicated scanners for benchmarking SSDs/HDDs and testing RAM modules for errors.
+*   **`6` ➜ Network and Peripherals Menu:** Tools to check internet connection stability, keyboard, mouse, and other inputs.
+*   **`7` ➜ Visit Project GitHub:** Instantly opens this official repository page in your default browser for updates.
+*   **`0` ➜ Exit:** Safely closes the testing toolkit launcher.
+
 ---
 
 ## ⚠️ Global Testing Safety Guidelines (Must Read First)
