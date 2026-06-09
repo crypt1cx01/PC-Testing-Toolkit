@@ -14,13 +14,9 @@ if %errorLevel% neq 0 (
     echo ========================================================================
     echo            ERROR: ADMINISTRATOR PRIVILEGES REQUIRED
     echo ========================================================================
-    if %errorLevel% == 0 (
-        goto :MAIN_MENU
-    ) else (
-        echo [!] Requesting Run as Administrator...
-        powershell -Command "Start-Process -FilePath '%0' -Verb RunAs"
-        exit /b
-    )
+    echo [!] Requesting Run as Administrator...
+    powershell -Command "Start-Process -FilePath '%~f0' -Verb RunAs"
+    exit /b
 )
 
 :: --- MAIN MENU LOOP ---
@@ -42,6 +38,8 @@ echo                                            0] Exit
 echo                       ======================   ======================
 echo.
 echo ====================================================================================================
+
+set "choice="
 set /p choice="Enter your choice: "
 
 if "%choice%"=="1" goto DIAGNOSTICS_MENU
@@ -51,7 +49,9 @@ if "%choice%"=="4" goto STORAGE_MENU
 if "%choice%"=="5" goto NET_PERIPH_MENU
 if "%choice%"=="6" goto VISIT_GITHUB
 if "%choice%"=="0" exit
+
 goto MAIN_MENU
+
 :: =====================================================================
 :: --- 1. DIAGNOSTICS MENU ---
 :: =====================================================================
@@ -65,17 +65,26 @@ echo.
 echo   1] Launch CPU-Z             (Verify CPU, Motherboard and RAM Specs - Auto Extract)
 echo   2] Launch GPU-Z             (Verify Graphics Card and Detect Fake GPUs)
 echo   3] Run Speccy Setup         (Install Speccy Component and Live Thermal Monitor)
-echo                            ======================   ======================
-echo                                       0] Return to Main Menu
-echo                            ======================   ======================
+echo                       ======================   ======================
+echo                                      0] Return to Main Menu
+echo                       ======================   ======================
 echo.
 echo ====================================================================================================
+
+set "diag_choice="
 set /p diag_choice="Select an option: "
 
-if "%diag_choice%"=="1" ( call :RunCPUZ & goto DIAGNOSTICS_MENU )
-if "%diag_choice%"=="2" ( call :RunGPUZ & goto DIAGNOSTICS_MENU )
-if "%diag_choice%"=="3" ( call :RunSpeccy & goto DIAGNOSTICS_MENU )
+if "%diag_choice%"=="1" call :RunCPUZ
+if "%diag_choice%"=="1" goto DIAGNOSTICS_MENU
+
+if "%diag_choice%"=="2" call :RunGPUZ
+if "%diag_choice%"=="2" goto DIAGNOSTICS_MENU
+
+if "%diag_choice%"=="3" call :RunSpeccy
+if "%diag_choice%"=="3" goto DIAGNOSTICS_MENU
+
 if "%diag_choice%"=="0" goto MAIN_MENU
+
 goto DIAGNOSTICS_MENU
 
 :: =====================================================================
@@ -96,13 +105,23 @@ echo                                       0] Return to Main Menu
 echo                            ======================   ======================
 echo.
 echo ====================================================================================================
+
+set "stress_choice="
 set /p stress_choice="Select an option: "
 
-if "%stress_choice%"=="1" ( call :RunAIDA & goto STRESS_MENU )
-if "%stress_choice%"=="2" ( call :RunCinebench & goto STRESS_MENU )
-if "%stress_choice%"=="3" ( call :FurMarkArchitectureMenu & goto STRESS_MENU )
+if "%stress_choice%"=="1" call :RunAIDA
+if "%stress_choice%"=="1" goto STRESS_MENU
+
+if "%stress_choice%"=="2" call :RunCinebench
+if "%stress_choice%"=="2" goto STRESS_MENU
+
+if "%stress_choice%"=="3" call :FurMarkArchitectureMenu
+if "%stress_choice%"=="3" goto STRESS_MENU
+
 if "%stress_choice%"=="0" goto MAIN_MENU
+
 goto STRESS_MENU
+
 :: =====================================================================
 :: --- 3. DISPLAY & MONITOR MENU ---
 :: =====================================================================
@@ -117,18 +136,29 @@ echo   1] Launch UDPixel22         (Stuck/Dead Pixel Fixer Utility - Auto Extrac
 echo   2] Open Dead Pixel Buddy    (Full-Screen Solid Colors Screen Tester)
 echo   3] Open EIZO Monitor Test   (Advanced Panel and Convergence Tester)
 echo   4] Open TestUFO Motion      (Monitor Refresh Rate and Ghosting Analyzer)
-echo                            ======================   ======================
-echo                                       0] Return to Main Menu
-echo                            ======================   ======================
+echo                       ======================   ======================
+echo                                      0] Return to Main Menu
+echo                       ======================   ======================
 echo.
 echo ====================================================================================================
+
+set "disp_choice="
 set /p disp_choice="Select an option: "
 
-if "%disp_choice%"=="1" ( call :RunUDPixel & goto DISPLAY_MENU )
-if "%disp_choice%"=="2" ( start https://deadpixelbuddy.com & goto DISPLAY_MENU )
-if "%disp_choice%"=="3" ( start https://www.eizo.be/monitor-test & goto DISPLAY_MENU )
-if "%disp_choice%"=="4" ( start https://testufo.com & goto DISPLAY_MENU )
+if "%disp_choice%"=="1" call :RunUDPixel
+if "%disp_choice%"=="1" goto DISPLAY_MENU
+
+if "%disp_choice%"=="2" start "" "https://deadpixelbuddy.com"
+if "%disp_choice%"=="2" goto DISPLAY_MENU
+
+if "%disp_choice%"=="3" start "" "https://www.eizo.be/monitor-test"
+if "%disp_choice%"=="3" goto DISPLAY_MENU
+
+if "%disp_choice%"=="4" start "" "https://testufo.com"
+if "%disp_choice%"=="4" goto DISPLAY_MENU
+
 if "%disp_choice%"=="0" goto MAIN_MENU
+
 goto DISPLAY_MENU
 
 :: =====================================================================
@@ -146,20 +176,34 @@ echo   2] Launch CrystalDiskMark       (Drive Speed Benchmark - Fixed v9.0.3 Aut
 echo   3] Launch Hard Disk Sentinel    (Deep Drive Life Diagnostics - Deep RAR Extract Fixed)
 echo   4] Run Windows RAM Test         (Native Windows Memory Diagnostics)
 echo   5] Create Bootable MemTest86    (Flash MemTest86 Utility - Auto Extract)
-echo                            ======================   ======================
-echo                                       0] Return to Main Menu
-echo                            ======================   ======================
+echo                       ======================   ======================
+echo                                      0] Return to Main Menu
+echo                       ======================   ======================
 echo.
 echo ====================================================================================================
+
+set "store_choice="
 set /p store_choice="Select an option: "
 
-if "%store_choice%"=="1" ( call :RunCDI & goto STORAGE_MENU )
-if "%store_choice%"=="2" ( call :RunCDM & goto STORAGE_MENU )
-if "%store_choice%"=="3" ( call :RunHDS & goto STORAGE_MENU )
-if "%store_choice%"=="4" ( mdsched.exe & goto STORAGE_MENU )
-if "%store_choice%"=="5" ( call :RunMemTest & goto STORAGE_MENU )
+if "%store_choice%"=="1" call :RunCDI
+if "%store_choice%"=="1" goto STORAGE_MENU
+
+if "%store_choice%"=="2" call :RunCDM
+if "%store_choice%"=="2" goto STORAGE_MENU
+
+if "%store_choice%"=="3" call :RunHDS
+if "%store_choice%"=="3" goto STORAGE_MENU
+
+if "%store_choice%"=="4" start "" mdsched.exe
+if "%store_choice%"=="4" goto STORAGE_MENU
+
+if "%store_choice%"=="5" call :RunMemTest
+if "%store_choice%"=="5" goto STORAGE_MENU
+
 if "%store_choice%"=="0" goto MAIN_MENU
+
 goto STORAGE_MENU
+
 :: =====================================================================
 :: --- 5. NETWORK and PERIPHERALS MENU ---
 :: =====================================================================
@@ -176,71 +220,127 @@ echo   3] Launch Keyboard Utility     (Test Keyboard Ghost Typing - Direct Execu
 echo   4] Open Webcam and Mic Test    (Launches Web App to Test Inputs Online)
 echo   5] Open Audio and Speaker Test (Launches Frequency Generator App Online)
 echo   6] Open Peripherals Tester     (Launches Web App to Test Keyboard and Mouse Online)
-echo                            ======================   ======================
-echo                                       0] Return to Main Menu
-echo                            ======================   ======================
+echo   7] Launch HWMonitor            (Hardware Temperature and Power Monitor - Auto Extract)
+echo                       ======================   ======================
+echo                                      0] Return to Main Menu
+echo                       ======================   ======================
 echo.
 echo ====================================================================================================
+
+set "net_choice="
 set /p net_choice="Select an option: "
 
-if "%net_choice%"=="1" ( call :RunWiFi & goto NET_PERIPH_MENU )
-if "%net_choice%"=="2" ( call :RunBatteryReport & goto NET_PERIPH_MENU )
-if "%net_choice%"=="3" ( call :RunKeyboardTest & goto NET_PERIPH_MENU )
-if "%net_choice%"=="4" ( start https://webcamtests.com & goto NET_PERIPH_MENU )
-if "%net_choice%"=="5" ( start https://audiocheck.net & goto NET_PERIPH_MENU )
-if "%net_choice%"=="6" ( start https://keyboard-mouse-tester-web-app.vercel.app & goto NET_PERIPH_MENU )
+if "%net_choice%"=="1" call :RunWiFi
+if "%net_choice%"=="1" goto NET_PERIPH_MENU
+
+if "%net_choice%"=="2" call :RunBatteryReport
+if "%net_choice%"=="2" goto NET_PERIPH_MENU
+
+if "%net_choice%"=="3" call :RunKeyboardTest
+if "%net_choice%"=="3" goto NET_PERIPH_MENU
+
+if "%net_choice%"=="4" start "" "https://webcamtests.com"
+if "%net_choice%"=="4" goto NET_PERIPH_MENU
+
+if "%net_choice%"=="5" start "" "https://audiocheck.net"
+if "%net_choice%"=="5" goto NET_PERIPH_MENU
+
+if "%net_choice%"=="6" start "" "https://keyboard-mouse-tester-web-app.vercel.app"
+if "%net_choice%"=="6" goto NET_PERIPH_MENU
+
+if "%net_choice%"=="7" call :RunHWMonitor
+if "%net_choice%"=="7" goto NET_PERIPH_MENU
+
 if "%net_choice%"=="0" goto MAIN_MENU
+
 goto NET_PERIPH_MENU
 
 :: =====================================================================
-:: --- SUBROUTINES: SAFE EXECUTION ENGINE (A to G) ---
+:: --- SUBROUTINES: SAFE EXECUTION ENGINE ---
 :: =====================================================================
 
 :RunCPUZ
 cls
-echo Extracting and Launching CPU-Z...
-cd /d "%~dp0CPU & GPU\cpu-z"
-if exist "cpu-z_2.20.1-en.zip" (
-    if not exist "Extracted_CPUZ" mkdir "Extracted_CPUZ"
-    powershell -Command "Expand-Archive -Path 'cpu-z_2.20.1-en.zip' -DestinationPath 'Extracted_CPUZ' -Force"
-    if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (
-        if exist "Extracted_CPUZ\cpuz_x64.exe" ( start "" "Extracted_CPUZ\cpuz_x64.exe" & exit /b )
-    )
-    if exist "Extracted_CPUZ\cpuz_x32.exe" ( start "" "Extracted_CPUZ\cpuz_x32.exe" & exit /b )
-    if exist "Extracted_CPUZ\cpuz.exe" ( start "" "Extracted_CPUZ\cpuz.exe" & exit /b )
-    echo Error: CPU-Z executable could not be targeted inside the ZIP!
-) else (
-    echo Error: cpu-z_2.20.1-en.zip not found!
+echo [!] Preparing CPU-Z Utility...
+
+cd /d "%~dp0\CPU & GPU\cpu-z" 2>nul
+
+if not exist "cpu-z_2.20.1-en.zip" (
+    echo [X] Error: 'cpu-z_2.20.1-en.zip' not found in the directory!
+    pause
+    cd /d "%~dp0"
+    exit /b
 )
+
+if exist "Extracted_CPUZ\cpuz_x64.exe" goto Launch64
+if exist "Extracted_CPUZ\cpuz_x32.exe" goto Launch32
+if exist "Extracted_CPUZ\cpuz.exe" goto LaunchGeneric
+
+echo [!] Extracting package components via PowerShell (Please wait)...
+if not exist "Extracted_CPUZ" mkdir "Extracted_CPUZ"
+powershell -Command "Expand-Archive -Path 'cpu-z_2.20.1-en.zip' -DestinationPath 'Extracted_CPUZ' -Force"
+
+:Launch64
+if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (
+    if exist "Extracted_CPUZ\cpuz_x64.exe" (
+        start "" "Extracted_CPUZ\cpuz_x64.exe"
+        cd /d "%~dp0"
+        exit /b
+    )
+)
+
+:Launch32
+if exist "Extracted_CPUZ\cpuz_x32.exe" (
+    start "" "Extracted_CPUZ\cpuz_x32.exe"
+    cd /d "%~dp0"
+    exit /b
+)
+
+:LaunchGeneric
+if exist "Extracted_CPUZ\cpuz.exe" (
+    start "" "Extracted_CPUZ\cpuz.exe"
+    cd /d "%~dp0"
+    exit /b
+)
+
+echo [X] Error: CPU-Z executable could not be targeted inside the ZIP!
 pause
+cd /d "%~dp0"
 exit /b
 
 :RunGPUZ
 cls
-echo Launching GPU-Z...
-cd /d "%~dp0CPU & GPU\gpu-z"
+echo [!] Launching GPU-Z...
+cd /d "%~dp0\CPU & GPU\gpu-z" 2>nul
 if exist "GPU-Z.2.69.0.exe" ( 
     start "" "GPU-Z.2.69.0.exe" 
+    cd /d "%~dp0"
+    exit /b
 ) else ( 
-    echo Error: GPU-Z.2.69.0.exe not found! 
+    echo [X] Error: GPU-Z.2.69.0.exe not found! 
     pause 
 )
+cd /d "%~dp0"
 exit /b
 
 :RunSpeccy
 cls
-echo Launching Speccy Setup Wizard...
-cd /d "%~dp0CPU & GPU\Speccy"
+echo [!] Launching Speccy Setup Wizard...
+cd /d "%~dp0\CPU & GPU\Speccy" 2>nul
 if exist "spsetup133.exe" (
     start "" "spsetup133.exe"
+    cd /d "%~dp0"
+    exit /b
 ) else (
-    echo Error: spsetup133.exe not found!
+    echo [X] Error: spsetup133.exe not found!
     pause
 )
+cd /d "%~dp0"
 exit /b
 
 :RunUDPixel
 cls
+echo [!] Checking .NET Framework status...
 dism /online /get-featureinfo /featurename:NetFx3 | findstr /i "Enabled" >nul 2>&1
 if %errorlevel% equ 0 (
     goto :StartExtraction
@@ -248,37 +348,69 @@ if %errorlevel% equ 0 (
     echo [!] .NET Framework 2.0/3.5 is missing.
     echo [+] Installing NetFx20SP1_x64.exe from your local files...
     
-    if exist "%~dp0Display & Monitor\UDPixel22\NetFx20SP1_x64.exe" (
-        start /wait "" "%~dp0Display & Monitor\UDPixel22\NetFx20SP1_x64.exe" /quiet /norestart
+    if exist "%~dp0\Display & Monitor\UDPixel22\NetFx20SP1_x64.exe" (
+        start /wait "" "%~dp0\Display & Monitor\UDPixel22\NetFx20SP1_x64.exe" /quiet /norestart
         echo [+] Local .NET Framework installation completed.
     ) else (
-        echo [X] Warning: NetFx20SP1_x64.exe not found in local path! Trying online activation...
+        echo [X] Warning: NetFx20SP1_x64.exe not found locally! Trying online activation...
         dism /online /enable-feature /featurename:NetFx3 /all /norestart /quiet
     )
     goto :StartExtraction
 )
 
 :StartExtraction
-echo Extracting and Launching UDPixel22...
-cd /d "%~dp0Display & Monitor"
+echo [!] Preparing UDPixel22...
+
+:: تأمين مسار الانتقال لوجود علامة &
+cd /d "%~dp0\Display & Monitor\UDPixel22" 2>nul
+
+:: الفحص الذكي: لو البرنامج مفكوك وموجود مسبقاً، بيدخل الفولدر بتاعه ويشغله فوراً عشان نمنع الـ System Error
+if exist "Extracted_UDPixel\UDPixel.exe" (
+    cd "Extracted_UDPixel"
+    start "" "UDPixel.exe"
+    cd /d "%~dp0"
+    exit /b
+)
+
 set "ud_found="
-for /r %%f in (*UDPixel*.zip) do (
+for %%f in (*UDPixel*.zip *udpixel*.zip) do (
     set "ud_found=1"
     if not exist "Extracted_UDPixel" mkdir "Extracted_UDPixel"
     powershell -Command "Expand-Archive -Path '%%f' -DestinationPath 'Extracted_UDPixel' -Force"
-    if exist "Extracted_UDPixel\UDPixel.exe" ( start "" "Extracted_UDPixel\UDPixel.exe" & exit /b )
-    for %%e in ("Extracted_UDPixel\*.exe") do ( start "" "%%e" & exit /b )
-    echo Error: UDPixel executable could not be targeted inside the ZIP!
+    if exist "Extracted_UDPixel\UDPixel.exe" (
+        cd "Extracted_UDPixel"
+        start "" "UDPixel.exe"
+        :: اللمسة السحرية: إعادة مسار الـ Batch للمجلد الرئيسي قبل الخروج للحفاظ على استقرار بقية القوائم
+        cd /d "%~dp0"
+        exit /b
+    )
+    
+    :: دعم إضافي في حال كان الملف التنفيذي باسم مختلف داخل الفولدر المجلد
+    if exist "Extracted_UDPixel" (
+        cd "Extracted_UDPixel"
+        for %%e in (*.exe) do (
+            start "" "%%e"
+            cd /d "%~dp0"
+            exit /b
+        )
+    )
+    echo Error: UDPixel.exe could not be targeted in 'Extracted_UDPixel\'!
     pause
 )
+
 if not defined ud_found (
     echo Error: UDPixel ZIP archive not found!
     pause
 )
+
+:: للأمان لو فشل كل شيء، يرجع للمسار الرئيسي
+cd /d "%~dp0"
 exit /b
+
 
 :RunAIDA
 cls
+echo [!] Checking Microsoft Visual C++ status...
 reg query "HKLM\SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\x64" /v Installed >nul 2>&1
 if %errorlevel% equ 0 (
     goto :StartAIDAExtraction
@@ -286,8 +418,8 @@ if %errorlevel% equ 0 (
     echo [!] Microsoft Visual C++ Redistributable is missing.
     echo [+] Installing VC_redist.x64.exe from your local files...
     
-    if exist "%~dp0CPU & GPU\AIDA64\VC_redist.x64.exe" (
-        start /wait "" "%~dp0CPU & GPU\AIDA64\VC_redist.x64.exe" /quiet /norestart
+    if exist "%~dp0\CPU & GPU\AIDA64\VC_redist.x64.exe" (
+        start /wait "" "%~dp0\CPU & GPU\AIDA64\VC_redist.x64.exe" /quiet /norestart
         echo [+] Local VC Redistributable installation completed.
     ) else (
         echo [X] Warning: VC_redist.x64.exe not found in local path!
@@ -297,43 +429,69 @@ if %errorlevel% equ 0 (
 )
 
 :StartAIDAExtraction
-echo Extracting and Launching AIDA64 Extreme...
-cd /d "%~dp0CPU & GPU\AIDA64"
-set "aida_found="
-for %%f in (*aida*.zip) do (
-    set "aida_found=1"
-    if not exist "Extracted_AIDA" mkdir "Extracted_AIDA"
-    powershell -Command "Expand-Archive -Path '%%f' -DestinationPath 'Extracted_AIDA' -Force"
+echo [!] Preparing AIDA64 Extreme...
+cd /d "%~dp0\CPU & GPU\AIDA64" 2>nul
+
+if exist "Extracted_AIDA\aida64.exe" (
     start "" "Extracted_AIDA\aida64.exe"
+    cd /d "%~dp0"
+    exit /b
 )
-if not defined aida_found (
-    echo Error: AIDA64 ZIP archive not found!
+
+if exist "*aida*.zip" (
+    echo [!] Extracting AIDA64 components via PowerShell (Please wait)...
+    if not exist "Extracted_AIDA" mkdir "Extracted_AIDA"
+    powershell -Command "Expand-Archive -Path '*aida*.zip' -DestinationPath 'Extracted_AIDA' -Force"
+    
+    if exist "Extracted_AIDA\aida64.exe" (
+        start "" "Extracted_AIDA\aida64.exe"
+        cd /d "%~dp0"
+        exit /b
+    ) else (
+        echo [X] Error: aida64.exe not found inside the extracted folder!
+        pause
+    )
+) else (
+    echo [X] Error: AIDA64 ZIP archive not found!
     pause
 )
+cd /d "%~dp0"
 exit /b
-
 
 :RunCinebench
 cls
 echo Extracting and Launching Cinebench Benchmark...
-cd /d "%~dp0CPU & GPU\Cinebench"
+
+cd /d "%~dp0\CPU & GPU\Cinebench" 2>nul
+
+if exist "Extracted_Cinebench\CINEBENCH R23\Cinebench.exe" (
+    cd "Extracted_Cinebench\CINEBENCH R23"
+    start "" "Cinebench.exe"
+    cd /d "%~dp0"
+    exit /b
+)
+
 set "cine_found="
-for %%f in (*cinebench*.zip) do (
+for %%f in (*CINEBENCH*.zip *cinebench*.zip) do (
     set "cine_found=1"
     if not exist "Extracted_Cinebench" mkdir "Extracted_Cinebench"
     powershell -Command "Expand-Archive -Path '%%f' -DestinationPath 'Extracted_Cinebench' -Force"
     if exist "Extracted_Cinebench\CINEBENCH R23\Cinebench.exe" (
         cd "Extracted_Cinebench\CINEBENCH R23"
         start "" "Cinebench.exe"
+        cd /d "%~dp0"
         exit /b
     )
     echo Error: Cinebench.exe could not be targeted in 'Extracted_Cinebench\CINEBENCH R23\'!
     pause
 )
+
 if not defined cine_found (
     echo Error: Cinebench ZIP archive not found!
     pause
 )
+
+cd /d "%~dp0"
 exit /b
 
 :FurMarkArchitectureMenu
@@ -346,164 +504,347 @@ echo.
 echo   1] Launch FurMark 64-Bit   (Recommended for modern PCs)
 echo   2] Launch FurMark 32-Bit   (For legacy x86 systems)
 echo                            ======================   ======================
-echo                                       0] Return to Main Menu
+echo                                       0] Return to Stress Menu
 echo                            ======================   ======================
 echo.
 echo ====================================================================================================
+
+set "fur_bit="
 set /p fur_bit="Select version: "
-if "%fur_bit%"=="1" ( call :RunFurMark64 & exit /b )
-if "%fur_bit%"=="2" ( call :RunFurMark32 & exit /b )
+
+if "%fur_bit%"=="1" call :RunFurMark64
+if "%fur_bit%"=="1" exit /b
+
+if "%fur_bit%"=="2" call :RunFurMark32
+if "%fur_bit%"=="2" exit /b
+
 if "%fur_bit%"=="0" exit /b
+
 goto FurMarkArchitectureMenu
 
 :RunFurMark64
 cls
-echo Extracting and Launching FurMark 64-Bit...
-cd /d "%~dp0CPU & GPU\FurMark"
+echo [!] Preparing FurMark 64-Bit...
+cd /d "%~dp0\CPU & GPU\FurMark" 2>nul
+
+if exist "Extracted_FurMark64\FurMark_win64\FurMark_GUI.exe" (
+    start "" "Extracted_FurMark64\FurMark_win64\FurMark_GUI.exe"
+    cd /d "%~dp0"
+    exit /b
+)
+
 if exist "FurMark_2.10.2_win64.zip" (
+    echo [!] Extracting FurMark 64-Bit via PowerShell...
     if not exist "Extracted_FurMark64" mkdir "Extracted_FurMark64"
     powershell -Command "Expand-Archive -Path 'FurMark_2.10.2_win64.zip' -DestinationPath 'Extracted_FurMark64' -Force"
+    
     if exist "Extracted_FurMark64\FurMark_win64\FurMark_GUI.exe" (
-        cd "Extracted_FurMark64\FurMark_win64"
-        start "" "FurMark_GUI.exe"
+        start "" "Extracted_FurMark64\FurMark_win64\FurMark_GUI.exe"
+        cd /d "%~dp0"
         exit /b
+    ) else (
+        echo [X] Error: FurMark_GUI.exe could not be targeted inside the zip folder!
+        pause
     )
-    echo Error: FurMark_GUI.exe could not be targeted in 'Extracted_FurMark64\FurMark_win64\'!
 ) else (
-    echo Error: FurMark_2.10.2_win64.zip not found!
+    echo [X] Error: FurMark_2.10.2_win64.zip not found!
+    pause
 )
-pause
+cd /d "%~dp0"
 exit /b
 
 :RunFurMark32
 cls
-color 0A
-echo Extracting and Launching FurMark 32-Bit...
-cd /d "%~dp0CPU & GPU\FurMark"
+echo [!] Preparing FurMark 32-Bit...
+cd /d "%~dp0\CPU & GPU\FurMark" 2>nul
+
+if exist "Extracted_FurMark32\FurMark_win32\FurMark_GUI.exe" (
+    start "" "Extracted_FurMark32\FurMark_win32\FurMark_GUI.exe"
+    cd /d "%~dp0"
+    exit /b
+)
+
 if exist "FurMark_2.10.2_win32.zip" (
+    echo [!] Extracting FurMark 32-Bit via PowerShell...
     if not exist "Extracted_FurMark32" mkdir "Extracted_FurMark32"
     powershell -Command "Expand-Archive -Path 'FurMark_2.10.2_win32.zip' -DestinationPath 'Extracted_FurMark32' -Force"
+    
     if exist "Extracted_FurMark32\FurMark_win32\FurMark_GUI.exe" (
-        cd "Extracted_FurMark32\FurMark_win32"
-        start "" "FurMark_GUI.exe"
+        start "" "Extracted_FurMark32\FurMark_win32\FurMark_GUI.exe"
+        cd /d "%~dp0"
         exit /b
+    ) else (
+        echo [X] Error: FurMark_GUI.exe could not be targeted inside the zip folder!
+        pause
     )
-    echo Error: FurMark_GUI.exe could not be targeted in 'Extracted_FurMark32\FurMark_win32\'!
 ) else (
-    echo Error: FurMark_2.10.2_win32.zip not found!
+    echo [X] Error: FurMark_2.10.2_win32.zip not found!
+    pause
 )
-pause
+cd /d "%~dp0"
 exit /b
 
 :RunCDI
 cls
-echo Extracting and Launching CrystalDiskInfo...
-cd /d "%~dp0Storage & RAM\CrystalDiskInfo"
+echo [!] Preparing CrystalDiskInfo...
+cd /d "%~dp0\Storage & RAM\CrystalDiskInfo" 2>nul
+
+if exist "Extracted_CDI\DiskInfo64.exe" (
+    start "" "Extracted_CDI\DiskInfo64.exe"
+    cd /d "%~dp0"
+    exit /b
+)
+
 if exist "CrystalDiskInfo9_7_2.zip" (
+    echo [!] Extracting components via PowerShell...
     if not exist "Extracted_CDI" mkdir "Extracted_CDI"
     powershell -Command "Expand-Archive -Path 'CrystalDiskInfo9_7_2.zip' -DestinationPath 'Extracted_CDI' -Force"
-    start "" "Extracted_CDI\DiskInfo64.exe"
+    
+    if exist "Extracted_CDI\DiskInfo64.exe" (
+        start "" "Extracted_CDI\DiskInfo64.exe"
+        cd /d "%~dp0"
+        exit /b
+    ) else (
+        echo [X] Error: DiskInfo64.exe not found inside the zip!
+        pause
+    )
 ) else (
-    echo Error: CrystalDiskInfo9_7_2.zip not found!
+    echo [X] Error: CrystalDiskInfo9_7_2.zip not found!
     pause
 )
+cd /d "%~dp0"
 exit /b
 
 :RunCDM
 cls
-echo Extracting and Launching CrystalDiskMark v9.0.3...
-cd /d "%~dp0Storage & RAM\CrystalDiskMark"
+echo [!] Preparing CrystalDiskMark v9.0.3...
+cd /d "%~dp0\Storage & RAM\CrystalDiskMark" 2>nul
+
+if exist "Extracted_CDM\DiskMark64.exe" (
+    start "" "Extracted_CDM\DiskMark64.exe"
+    cd /d "%~dp0"
+    exit /b
+)
+
 if exist "CrystalDiskMark9_0_3.zip" (
+    echo [!] Extracting components via PowerShell...
     if not exist "Extracted_CDM" mkdir "Extracted_CDM"
     powershell -Command "Expand-Archive -Path 'CrystalDiskMark9_0_3.zip' -DestinationPath 'Extracted_CDM' -Force"
-    start "" "Extracted_CDM\DiskMark64.exe"
+    
+    if exist "Extracted_CDM\DiskMark64.exe" (
+        start "" "Extracted_CDM\DiskMark64.exe"
+        cd /d "%~dp0"
+        exit /b
+    ) else (
+        echo [X] Error: DiskMark64.exe not found inside the zip!
+        pause
+    )
 ) else (
-    echo Error: CrystalDiskMark9_0_3.zip not found!
+    echo [X] Error: CrystalDiskMark9_0_3.zip not found!
     pause
 )
+cd /d "%~dp0"
 exit /b
 
 :RunHDS
 cls
-echo Extracting Hard Disk Sentinel RAR Package...
-cd /d "%~dp0Storage & RAM\HD-Sentinel"
-if exist "hdsentinel_setup.rar" (
+echo [!] Preparing Hard Disk Sentinel...
+cd /d "%~dp0\Storage & RAM\HD-Sentinel" 2>nul
+
+if exist "Extracted_HDS\hdsentinel_setup.exe" (
+    start "" "Extracted_HDS\hdsentinel_setup.exe"
+    cd /d "%~dp0"
+    exit /b
+)
+if exist "Extracted_HDS\hdsentinel_setup\hdsentinel_setup.exe" (
+    start "" "Extracted_HDS\hdsentinel_setup\hdsentinel_setup.exe"
+    cd /d "%~dp0"
+    exit /b
+)
+
+if exist "hdsentinel_setup.zip" (
+    echo [!] Extracting Hard Disk Sentinel via PowerShell...
     if not exist "Extracted_HDS" mkdir "Extracted_HDS"
-    tar -xf "hdsentinel_setup.rar" -C "Extracted_HDS" 2>nul
-    if exist "Extracted_HDS\hdsentinel_setup\hdsentinel_setup.exe" (
-        cd "Extracted_HDS\hdsentinel_setup"
-        start "" "hdsentinel_setup.exe"
+    powershell -Command "Expand-Archive -Path 'hdsentinel_setup.zip' -DestinationPath 'Extracted_HDS' -Force"
+    
+    if exist "Extracted_HDS\hdsentinel_setup.exe" (
+        start "" "Extracted_HDS\hdsentinel_setup.exe"
+        cd /d "%~dp0"
         exit /b
     )
-    echo Error: hdsentinel_setup.exe could not be found inside 'Extracted_HDS\hdsentinel_setup\'!
+    if exist "Extracted_HDS\hdsentinel_setup\hdsentinel_setup.exe" (
+        start "" "Extracted_HDS\hdsentinel_setup\hdsentinel_setup.exe"
+        cd /d "%~dp0"
+        exit /b
+    )
+    echo [X] Error: hdsentinel_setup.exe could not be targeted inside the package!
+    pause
 ) else (
-    echo Error: hdsentinel_setup.rar not found!
+    if exist "hdsentinel_setup.rar" (
+        echo [!] Extracting RAR package via native tar utility...
+        if not exist "Extracted_HDS" mkdir "Extracted_HDS"
+        tar -xf "hdsentinel_setup.rar" -C "Extracted_HDS"
+        
+        if exist "Extracted_HDS\hdsentinel_setup.exe" ( 
+            start "" "Extracted_HDS\hdsentinel_setup.exe" 
+            cd /d "%~dp0"
+            exit /b 
+        )
+        if exist "Extracted_HDS\hdsentinel_setup\hdsentinel_setup.exe" ( 
+            start "" "Extracted_HDS\hdsentinel_setup\hdsentinel_setup.exe" 
+            cd /d "%~dp0"
+            exit /b 
+        )
+        echo [X] Error: Could not find setup executable inside extracted RAR!
+    ) else (
+        echo [X] Error: hdsentinel_setup.zip/.rar not found!
+    )
+    pause
 )
-pause
+cd /d "%~dp0"
 exit /b
 
 :RunMemTest
 cls
-echo Extracting MemTest86 Flashing Utility...
-cd /d "%~dp0Storage & RAM\RAM\memtest86"
-if exist "memtest86-usb.zip" (
-    if not exist "Extracted_MemTest" mkdir "Extracted_MemTest"
-    powershell -Command "Expand-Archive -Path 'memtest86-usb.zip' -DestinationPath 'Extracted_MemTest' -Force"
+echo [!] Preparing MemTest86 Flashing Utility...
+cd /d "%~dp0\Storage & RAM\RAM\memtest86" 2>nul
+
+if exist "Extracted_MemTest\imageUSB.exe" (
     start "" "Extracted_MemTest\imageUSB.exe"
     echo.
     echo [INFO] Run imageUSB to flash the tool onto your USB drive, then reboot to test!
     pause
+    cd /d "%~dp0"
+    exit /b
+)
+
+if exist "memtest86-usb.zip" (
+    echo [!] Extracting MemTest86 via PowerShell...
+    if not exist "Extracted_MemTest" mkdir "Extracted_MemTest"
+    powershell -Command "Expand-Archive -Path 'memtest86-usb.zip' -DestinationPath 'Extracted_MemTest' -Force"
+    
+    if exist "Extracted_MemTest\imageUSB.exe" (
+        start "" "Extracted_MemTest\imageUSB.exe"
+        echo.
+        echo [INFO] Run imageUSB to flash the tool onto your USB drive, then reboot to test!
+    ) else (
+        echo [X] Error: imageUSB.exe not found inside the zip!
+    )
+    pause
 ) else (
-    echo Error: memtest86-usb.zip not found!
+    echo [X] Error: memtest86-usb.zip not found!
     pause
 )
+cd /d "%~dp0"
 exit /b
 
 :RunWiFi
 cls
-echo Extracting and Launching WirelessNetView...
-cd /d "%~dp0Network & Wi-Fi Diagnostics\WirelessNetView"
+echo [!] Preparing WirelessNetView...
+cd /d "%~dp0\Network & Wi-Fi Diagnostics\WirelessNetView" 2>nul
+
+if exist "Extracted_WiFi\WirelessNetView.exe" (
+    start "" "Extracted_WiFi\WirelessNetView.exe"
+    cd /d "%~dp0"
+    exit /b
+)
+
 if exist "wirelessnetview.zip" (
+    echo [!] Extracting WirelessNetView via PowerShell...
     if not exist "Extracted_WiFi" mkdir "Extracted_WiFi"
     powershell -Command "Expand-Archive -Path 'wirelessnetview.zip' -DestinationPath 'Extracted_WiFi' -Force"
-    start "" "Extracted_WiFi\WirelessNetView.exe"
+    
+    if exist "Extracted_WiFi\WirelessNetView.exe" (
+        start "" "Extracted_WiFi\WirelessNetView.exe"
+        cd /d "%~dp0"
+        exit /b
+    ) else (
+        echo [X] Error: WirelessNetView.exe not found inside the zip!
+    )
+    pause
 ) else (
-    echo Error: wirelessnetview.zip not found!
+    echo [X] Error: wirelessnetview.zip not found!
     pause
 )
+cd /d "%~dp0"
 exit /b
 
 :RunKeyboardTest
 cls
-echo Launching Keyboard Test Utility...
-cd /d "%~dp0Peripherals\keyboard-test"
+echo [!] Launching Keyboard Test Utility...
+cd /d "%~dp0\Peripherals\keyboard-test" 2>nul
 if exist "keyboardtestutility.exe" (
     start "" "keyboardtestutility.exe"
+    cd /d "%~dp0"
     exit /b
 ) else (
-    echo Error: keyboardtestutility.exe not found in 'Peripherals\keyboard-test\'!
+    echo [X] Error: keyboardtestutility.exe not found in 'Peripherals\keyboard-test\'!
     pause
 )
+cd /d "%~dp0"
+exit /b
+
+:RunHWMonitor
+cls
+echo Extracting and Launching HWMonitor Hardware Tracker...
+
+cd /d "%~dp0\Battery & Power\hwmonitor" 2>nul
+
+if exist "Extracted_HWMonitor\hwmonitor_x64.exe" (
+    cd "Extracted_HWMonitor"
+    if "%PROCESSOR_ARCHITECTURE%"=="AMD64" ( start "" "hwmonitor_x64.exe" ) else ( start "" "hwmonitor_x32.exe" )
+    cd /d "%~dp0"
+    exit /b
+)
+
+set "hw_found="
+for %%f in (*hwmonitor*.zip) do (
+    set "hw_found=1"
+    if not exist "Extracted_HWMonitor" mkdir "Extracted_HWMonitor"
+    powershell -Command "Expand-Archive -Path '%%f' -DestinationPath 'Extracted_HWMonitor' -Force"
+    
+    if exist "Extracted_HWMonitor\hwmonitor_x64.exe" (
+        cd "Extracted_HWMonitor"
+        if "%PROCESSOR_ARCHITECTURE%"=="AMD64" ( start "" "hwmonitor_x64.exe" ) else ( start "" "hwmonitor_x32.exe" )
+        cd /d "%~dp0"
+        exit /b
+    )
+    echo Error: HWMonitor executable could not be targeted inside the ZIP!
+    pause
+)
+
+if not defined hw_found (
+    echo Error: HWMonitor ZIP archive not found in 'Battery & Power\hwmonitor\'!
+    pause
+)
+
+cd /d "%~dp0"
 exit /b
 
 :RunBatteryReport
 cls
 color 0A
-echo Generating Detailed Laptop Battery Report...
-powercfg /batteryreport /output "%~dp0battery_report.html" >nul 2>&1
-if exist "%~dp0battery_report.html" (
+echo [!] Generating Detailed Laptop Battery Report...
+
+if not exist "%~dp0\Battery & Power" mkdir "%~dp0\Battery & Power" 2>nul
+
+powercfg /batteryreport /output "%~dp0\Battery & Power\battery_report.html" >nul 2>&1
+
+if exist "%~dp0\Battery & Power\battery_report.html" (
     echo.
-    echo Battery Report generated successfully!
-    echo Opening 'battery_report.html' in your default browser...
-    start "" "%~dp0battery_report.html"
+    echo [+] Battery Report generated successfully!
+    echo [!] Opening 'battery_report.html' in your default browser...
+    start "" "%~dp0\Battery & Power\battery_report.html"
 ) else (
-    echo Error: Windows powercfg failed to generate the report.
-    echo Make sure you are testing on a laptop with a battery pack.
+    echo [X] Error: Windows powercfg failed to generate the report.
+    echo [!] Make sure you are testing on a laptop with a functional battery pack.
 )
 pause
+cd /d "%~dp0"
 exit /b
 
 :VISIT_GITHUB
-echo Opening GitHub Repository in your browser...
-start https://github.com/crypt1cx01/PC-Testing-Toolkit
+cls
+echo [!] Opening GitHub Repository in your browser...
+start "" "https://github.com/crypt1cx01/PC-Testing-Toolkit"
 goto MAIN_MENU
