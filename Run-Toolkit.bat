@@ -14,11 +14,13 @@ if %errorLevel% neq 0 (
     echo ========================================================================
     echo            ERROR: ADMINISTRATOR PRIVILEGES REQUIRED
     echo ========================================================================
-    echo This toolkit requires admin rights to read hardware sensors.
-    echo Please right-click 'Run-Toolkit.bat' and select 'Run as administrator'.
-    echo ========================================================================
-    pause
-    exit /b
+    if %errorLevel% == 0 (
+        goto :MAIN_MENU
+    ) else (
+        echo [!] Requesting Run as Administrator...
+        powershell -Command "Start-Process -FilePath '%0' -Verb RunAs"
+        exit /b
+    )
 )
 
 :: --- MAIN MENU LOOP ---
@@ -238,6 +240,24 @@ exit /b
 
 :RunUDPixel
 cls
+dism /online /get-featureinfo /featurename:NetFx3 | findstr /i "Enabled" >nul 2>&1
+if %errorlevel% equ 0 (
+    goto :StartExtraction
+) else (
+    echo [!] .NET Framework 2.0/3.5 is missing.
+    echo [+] Installing NetFx20SP1_x64.exe from your local files...
+    
+    if exist "%~dp0Display & Monitor\UDPixel22\NetFx20SP1_x64.exe" (
+        start /wait "" "%~dp0Display & Monitor\UDPixel22\NetFx20SP1_x64.exe" /quiet /norestart
+        echo [+] Local .NET Framework installation completed.
+    ) else (
+        echo [X] Warning: NetFx20SP1_x64.exe not found in local path! Trying online activation...
+        dism /online /enable-feature /featurename:NetFx3 /all /norestart /quiet
+    )
+    goto :StartExtraction
+)
+
+:StartExtraction
 echo Extracting and Launching UDPixel22...
 cd /d "%~dp0Display & Monitor"
 set "ud_found="
@@ -255,8 +275,27 @@ if not defined ud_found (
     pause
 )
 exit /b
+
 :RunAIDA
 cls
+reg query "HKLM\SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\x64" /v Installed >nul 2>&1
+if %errorlevel% equ 0 (
+    goto :StartAIDAExtraction
+) else (
+    echo [!] Microsoft Visual C++ Redistributable is missing.
+    echo [+] Installing VC_redist.x64.exe from your local files...
+    
+    if exist "%~dp0CPU & GPU\AIDA64\VC_redist.x64.exe" (
+        start /wait "" "%~dp0CPU & GPU\AIDA64\VC_redist.x64.exe" /quiet /norestart
+        echo [+] Local VC Redistributable installation completed.
+    ) else (
+        echo [X] Warning: VC_redist.x64.exe not found in local path!
+        timeout /t 3 >nul
+    )
+    goto :StartAIDAExtraction
+)
+
+:StartAIDAExtraction
 echo Extracting and Launching AIDA64 Extreme...
 cd /d "%~dp0CPU & GPU\AIDA64"
 set "aida_found="
@@ -271,6 +310,7 @@ if not defined aida_found (
     pause
 )
 exit /b
+
 
 :RunCinebench
 cls
