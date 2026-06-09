@@ -34,10 +34,12 @@ echo   [------------------------------------------------------------------------
 echo     Main Portal - Managed Security and Stability                  Created by crypt1cx01
 echo ====================================================================================================
 echo.
-echo   1] CPU and GPU Diagnostics Menu                        5] Storage and RAM Testing Menu
-echo   2] System Stress Testing Menu                          6] Network and Peripherals Menu
-echo   3] Display and Monitor Diagnostics Menu                7] Visit Project GitHub
-echo   4] Install AIDA64 Pre-requisites                       0] Exit
+echo   1] CPU and GPU Diagnostics Menu                        4] Storage and RAM Testing Menu
+echo   2] System Stress Testing Menu                          5] Network and Peripherals Menu
+echo   3] Display and Monitor Diagnostics Menu                6] Visit Project GitHub
+echo                       ======================   ======================
+echo                                            0] Exit
+echo                       ======================   ======================
 echo.
 echo ====================================================================================================
 set /p choice="Enter your choice: "
@@ -45,10 +47,9 @@ set /p choice="Enter your choice: "
 if "%choice%"=="1" goto DIAGNOSTICS_MENU
 if "%choice%"=="2" goto STRESS_MENU
 if "%choice%"=="3" goto DISPLAY_MENU
-if "%choice%"=="4" goto INSTALL_VCREDIST
-if "%choice%"=="5" goto STORAGE_MENU
-if "%choice%"=="6" goto NET_PERIPH_MENU
-if "%choice%"=="7" goto VISIT_GITHUB
+if "%choice%"=="4" goto STORAGE_MENU
+if "%choice%"=="5" goto NET_PERIPH_MENU
+if "%choice%"=="6" goto VISIT_GITHUB
 if "%choice%"=="0" exit
 goto MAIN_MENU
 :: =====================================================================
@@ -501,27 +502,6 @@ if exist "%~dp0battery_report.html" (
 )
 pause
 exit /b
-
-:INSTALL_VCREDIST
-cls
-color 0D
-echo ====================================================================================================
-echo                                         DEPENDENCY INSTALLER
-echo ====================================================================================================
-echo.
-echo   Installing Microsoft Visual C++ Redistributable x64...
-echo   Required for stable AIDA64 execution.
-echo.
-cd /d "%~dp0CPU & GPU\AIDA64"
-if exist "VC_redist.x64.exe" (
-    echo Running installer...
-    start /wait "" "VC_redist.x64.exe" /passive /norestart
-    echo VC_redist installation task finished!
-) else (
-    echo Error: 'VC_redist.x64.exe' was not found in the AIDA64 folder.
-)
-pause
-goto MAIN_MENU
 
 :VISIT_GITHUB
 echo Opening GitHub Repository in your browser...
