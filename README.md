@@ -24,6 +24,21 @@ A comprehensive, lightweight, and production-ready diagnostic toolkit designed f
 * **Stress & Benchmark Tools:** AIDA64 Extreme, FurMark, Cinebench, CrystalDiskMark.
 * **Display & Peripheral Testers:** UDPixel22, Keyboard Test Utility, Web-based All-in-One Controller/Mouse tester.
 * **Deep Hardware Testers:** Bootable MemTest86+ Package, Windows Memory Diagnostic.
+* 
+## 🛠️ Included Tools & Official Sources
+
+To ensure safety and the latest updates, here is the list of core tools included or recommended by this toolkit, along with their official download sources:
+
+| Category | Tool Name | Purpose | Official Source |
+| :--- | :--- | :--- | :--- |
+| **CPU & GPU** | CPU-Z | Hardware identification (CPU, Motherboard, RAM) | [CPUID](https://cpuid.com/softwares/cpu-z.html) |
+| **CPU & GPU** | GPU-Z | Video card documentation and diagnostics | [TechPowerUp](https://www.techpowerup.com/download/gpu-z/) |
+| **CPU & GPU** | FurMark | GPU stress testing and benchmarking | [FurMark](https://www.geeks3d.com/furmark/downloads/) |
+| **Storage & RAM** | CrystalDiskInfo | HDD/SSD health and SMART status monitoring | [CrystalDiskInfo](https://crystalmark.info/en/software/crystaldiskinfo/) |
+| **Storage & RAM** | CrystalDiskMark | Disk drive performance benchmarking | [CrystalDiskMark](https://crystalmark.info/en/software/crystaldiskmark/) |
+| **Storage & RAM** | MemTest86 | Advanced memory (RAM) diagnostic tool | [MemTest86](https://www.memtest86.com/download.htm) |
+| **Diagnostics** | AIDA64 | Comprehensive system information and stability test | [AIDA64](https://www.aida64.com/downloads) |
+| **Diagnostics** | HWMONITOR | Hardware temperature, voltage, and fan speed monitoring | [HWMONITOR](https://cpuid.com/softwares/hwmonitor.html) |
 
 ---
 
