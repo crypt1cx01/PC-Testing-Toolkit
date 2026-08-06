@@ -24,7 +24,7 @@ A comprehensive, lightweight, and production-ready diagnostic toolkit designed f
 * **Stress & Benchmark Tools:** AIDA64 Extreme, FurMark, Cinebench, CrystalDiskMark.
 * **Display & Peripheral Testers:** UDPixel22, Keyboard Test Utility, Web-based All-in-One Controller/Mouse tester.
 * **Deep Hardware Testers:** Bootable MemTest86+ Package, Windows Memory Diagnostic.
-* 
+
 ## 🛠️ Included Tools & Official Sources
 
 To ensure safety and the latest updates, here is the list of core tools included or recommended by this toolkit, along with their official download sources:
@@ -42,18 +42,19 @@ To ensure safety and the latest updates, here is the list of core tools included
 
 ## 📖 Usage Guide & Menu Structure
 
-To start using the toolkit, simply right-click on **`Run-Toolkit.bat`** and select **Run as Administrator** (or just double-click it, and the script will automatically request Admin privileges). 
+To start using the toolkit, simply right-click on **Run-Toolkit.bat** and select **Run as Administrator** (the script is built with a fail-safe automation engine that will automatically request Admin privileges via PowerShell if missed).
 
-Once launched, you can navigate through the toolkit completely using your keyboard numbers **[0-7]**. Here is the master menu breakdown:
+Once launched, you can navigate through the toolkit completely using your keyboard numbers **[0-6]**. Here is the final master menu layout:
 
-*   **`1` ➜ CPU and GPU Diagnostics Menu:** Quick access to processors and graphics cards identification and health tools.
-*   **`2` ➜ System Stress Testing Menu:** Utilities to push your hardware to the limits and test system stability.
-*   **`3` ➜ Display and Monitor Diagnostics Menu:** Tools to check for dead pixels, screen bleeding, and color accuracy.
-*   **`4` ➜ Install AIDA64 Pre-requisites:** Automatically installs the required Microsoft Visual C++ Redistributable (**`VC_redist.x64.exe`**) to run AIDA64 smoothly.
-*   **`5` ➜ Storage and RAM Testing Menu:** Dedicated scanners for benchmarking SSDs/HDDs and testing RAM modules for errors.
-*   **`6` ➜ Network and Peripherals Menu:** Tools to check internet connection stability, keyboard, mouse, and other inputs.
-*   **`7` ➜ Visit Project GitHub:** Instantly opens this official repository page in your default browser for updates.
-*   **`0` ➜ Exit:** Safely closes the testing toolkit launcher.
+| Key | Menu Option | Description |
+| :---: | :--- | :--- |
+| **`1`** | **CPU and GPU Diagnostics Menu** | Quick access to processors and graphics cards identification and health tools. |
+| **`2`** | **System Stress Testing Menu** | Utilities to push your hardware to the limits and test overall system stability. |
+| **`3`** | **Display and Monitor Diagnostics Menu** | Tools to check for dead pixels, screen bleeding, and panel color accuracy. |
+| **`4`** | **Storage and RAM Testing Menu** | Dedicated scanners for benchmarking SSDs/HDDs and testing RAM modules. |
+| **`5`** | **Network and Peripherals Menu** | Tools to check internet, laptop battery status, keyboard, mouse, and hardware inputs. |
+| **`6`** | **Visit Project GitHub** | Instantly opens this official repository page in your default browser for updates. |
+| **`0`** | **Exit** | Safely closes the testing toolkit launcher and restores system paths. |
 
 ---
 
